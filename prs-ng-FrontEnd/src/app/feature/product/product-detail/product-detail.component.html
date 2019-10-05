@@ -1,0 +1,48 @@
+<div class='component-content'>     
+    <div class=''>
+      <div class='lefthalf'>
+        <span class='component-title'>[{{title}}]</span>
+      </div>
+    </div>
+    <table class="table table-sm" *ngIf='product'>
+      <tr>
+        <td>Name</td>
+        <td>{{ product.name }}</td>
+      </tr>
+      <tr>
+        <td>PartNbr</td>
+        <td>{{ product.PartNbr }}</td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td>{{ product.price }}</td>
+      </tr>
+      <tr>
+        <td>Unit</td>
+        <td>{{ product.unit}}</td>
+      </tr>
+      <tr>
+        <td>PhotoPath</td>
+        <td>{{ product.photopath }}</td>
+      </tr>
+      <tr>
+        <td>Vendor</td>
+        <td>{{ product.vendor.name }}</td>
+      </tr>
+      <tr>
+        <td>VendorId</td>
+        <td>{{ product.vendorId }}</td>
+      </tr>
+      <tr>
+        <td colspan="2">
+            <a *ngIf='loggedInUser.admin || loggedInUser.userName == user.userName' routerLink='/product/edit/{{product.id}}' class='btn btn-primary' title='Edit' style='margin-right: 5px'>Edit</a>
+
+          <!-- <a routerLink='/product/edit/{{product.id}}' class='btn btn-primary' title='Edit' style='margin-right: 5px'>Edit</a>
+          <button (click)="remove()" class='btn btn-danger' title='Delete'>Remove</button> -->
+
+          <button *ngIf='loggedInUser.admin' (click)="remove()" class='btn btn-danger' title='Delete'>Remove</button>
+         </td>
+      </tr>
+    </table>
+  </div>
+  

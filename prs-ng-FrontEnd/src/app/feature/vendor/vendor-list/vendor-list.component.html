@@ -1,0 +1,79 @@
+
+<div class='component-content'>
+  <div class='lefthalf'>
+    <span class='component-title'>[{{title}}] </span>
+    <span><a *ngIf='loggedInUser.isAdmin' routerLink='/vendor/create'>
+        <span><a routerLink='/vendor/create'>
+        <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'>
+    </a>
+    </span>
+  <div>
+</div>
+<p *ngIf='!vendors'>Loading ...</p>
+<table class="table table-sm" *ngIf='vendors'>
+  <tr>
+    <th class='table-secondary'></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
+        (click)="sortBy('name')"><u>Name</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
+        (click)="sortBy('code')"><u>Code</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
+        (click)="sortBy('state')"><u>State</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
+        (click)="sortBy('city')"><u>City</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
+        (click)="sortBy('phone')"><u>Phone</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
+        (click)="sortBy('email')"><u>Email</u></a></th>
+    <th class="table-secondary btn-link"><a class='btn btn-link font-weight-bold'>Privilege</a></th>
+    <th class="table-secondary btn-link"><a class='btn btn-link font-weight-bold'>Action</a></th>
+  </tr>
+  <tr *ngFor='let vendor of vendors | sort:sortCriteria:sortOrder'>
+    <td></td>
+    <td>{{vendor.name}}</td>
+    <td>{{vendor.code}}</td>
+    <td>{{vendor.city}}</td>
+    <td>{{vendor.phone}}</td>
+    <td>{{vendor.email}}</td>
+    <td class='actions'>
+      <a routerLink='/vendor/detail/{{vendor.id}}' style='padding-left: 16px' class='actionIcon'><img src='assets/details.png' width='20' height='20' title='Detail'></a>
+      <a *ngIf='loggedInUser.isAdmin' routerLink='/vendor/edit/{{vendor.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a>
+     <a routerLink='/vendor/edit/{{vendor.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a></td>
+      </tr>
+</table>
+
+
+
+
+<!-- <p>vendor-list works!</p> -->
+<!-- <table class="table" *ngIf='vendors'>
+ // *ngIf='vendors' -- make sure vendor list loads before displaying and clickable        <thead class="thead-dark">
+
+        <th><a (click)="sortBy('code')"><u>Code</u></a></th>
+         <th><a (click)="sortBy('name')"><u>Name</u></a></th>
+         <th><a (click)="sortBy('city')"><u>City</u></a></th>
+
+         <tr>
+         <th>ID</th>
+         <th>Code</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+            <th>Phone</th>
+            <th>Email</th>
+    </tr>
+        </thead>
+    <tr *ngFor='let v of vendors | sort:sortCriteria:sortOrder'>
+        <td>{{v.id}}</td>
+        <td>{{v.code}}</td>
+        <td>{{v.name}}</td>
+        <td>{{v.city}}</td>
+        <td>{{v.state}}</td>
+        <td>{{v.zip}}</td>
+        <td>{{v.phone}}</td>
+        <td>{{v.email}}</td>
+
+    </tr>
+    </table> -->
