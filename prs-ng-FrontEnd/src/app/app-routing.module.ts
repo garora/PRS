@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { UserListComponent } from './feature/user/user-list/user-list.component';
@@ -27,8 +27,8 @@ import { RequestReviewComponent } from './feature/request/request-review/request
 import { RequestApproveComponent } from './feature/request/request-approve/request-approve.component';
 import { RequestLinesComponent } from './feature/request/request-lines/request-lines.component';
 
-import { RequestLineItemEditComponent } from './feature/requestLine/requestLineItem-edit/requestLineItem-edit.component';
-import { RequestLineItemCreateComponent } from './feature/requestLine/requestLineItem-create/requestLineItem-create.component';
+import { RequestLineItemCreateComponent } from './feature/requestLineItems/requestLineItem-create/requestLineItem-create.component';
+import { RequestLineItemEditComponent } from './feature/requestLineItems/requestLineItem-edit/requestLineItem-edit.component';
 
 
 
@@ -55,12 +55,13 @@ const routes: Routes = [
   { path: 'request/create', component: RequestCreateComponent},
   { path: 'request/detail/:id', component: RequestDetailComponent},
   { path: 'request/edit/:id', component: RequestEditComponent},
+  
   { path: 'request/review', component: RequestListComponent},
   { path: 'request/approve', component: RequestCreateComponent},
   { path: 'request/lines', component: RequestListComponent},
 
-  { path: 'requestLine/edit/:id', component: RequestDetailComponent},
-  { path: 'requestLine/create/:id', component: RequestEditComponent}
+  { path: 'requestLineItems/edit/:id', component: RequestDetailComponent},
+  { path: 'requestLineItems/create/:id', component: RequestEditComponent}
   
    ];
 
