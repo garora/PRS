@@ -1,7 +1,9 @@
+import { Users } from './../../../model/users.class';
 import { Component, OnInit } from '@angular/core';
 import { VendorService } from '@svc/vendor.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Vendors } from '@model/vendors.class';
+import { SystemService } from '@svc/system.service';
 
 @Component({
   selector: 'app-vendor-edit',
@@ -12,8 +14,10 @@ import { Vendors } from '@model/vendors.class';
 export class VendorEditComponent implements OnInit {
   vendor: Vendors = new Vendors();
   title: string = 'Vendor-Edit';
+  loggedInUser: Users;
   
   constructor(private vendorSvc: VendorService,
+    private systemSvc: SystemService,
     private router: Router,
     private route: ActivatedRoute) { }
 
@@ -23,7 +27,11 @@ export class VendorEditComponent implements OnInit {
   // One of PARAMETER accepts id from JSON.  
   //  Vendors is plural due to table in db named with plural
    // because asynchronous, nesting them forces get(parms.id) to run first
-  ngOnInit() {     
+  ngOnInit() {   
+    this.loggedInUser = this.systemSvc.getLoggedInUser();
+    console.log("user: ", this.loggedInUser);
+    if(this.loggedInUser.isAdmin == true) {
+  
     this.route.params.subscribe(parms => {     
       this.vendorSvc.get(parms.id).subscribe(resp => {
         this.vendor = resp as Vendors;  
@@ -32,7 +40,7 @@ export class VendorEditComponent implements OnInit {
       })
     });
 }
-
+  }
 edit() {
   this.vendorSvc.edit(this.vendor).subscribe( resp => {   //   this is all we need to save vendor
     //  success    

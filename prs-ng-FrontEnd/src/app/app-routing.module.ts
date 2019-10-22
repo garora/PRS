@@ -25,8 +25,10 @@ import { RequestEditComponent } from './feature/request/request-edit/request-edi
 
 import { RequestReviewComponent } from './feature/request/request-review/request-review.component';
 import { RequestApproveComponent } from './feature/request/request-approve/request-approve.component';
-import { RequestLineItemEditComponent } from './feature/requestLineItems/requestLineItem-edit/requestLineItem-edit.component'
-import { RequestLineItemCreateComponent } from './feature/requestLineItems/requestLineItem-create/requestLineItem-create.component'
+import { RequestLinesComponent } from './feature/request/request-lines/request-lines.component';
+
+import { RequestLineItemEditComponent } from './feature/requestLine/requestLineItem-edit/requestLineItem-edit.component';
+import { RequestLineItemCreateComponent } from './feature/requestLine/requestLineItem-create/requestLineItem-create.component';
 
 
 

@@ -1,10 +1,11 @@
-import { RequestLineItems } from './../../../model/requestLineItems.class';
-
 import { Component, OnInit } from '@angular/core';
 import { Requests } from '../../../model/requests.class';
 import { SystemService } from '../../../service/system.service';
 import { RequestService } from '../../../service/request.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Users } from '../../../model/users.class';
+import { RequestLineItems } from '@model/requestLineItems.class';
+import { RequestLineItemService } from '@svc/requestLineItem.service';
 
 @Component({
   selector: 'app-request-lines',
@@ -13,18 +14,83 @@ import { Router } from '@angular/router';
 })
 
 export class RequestLinesComponent implements OnInit {
+ /*  ngOnInit(): void {
+    throw new Error("Method not implemented.");
+  } */
+  title: string = 'Request Line Items';
+  id: number;
+  loggedInUserId: Users["id"];
+  lineId: string = '0';
+  request: Request;
+  RequestLines: RequestLineItems[];
+  RequestLine: RequestLineItems;
+
+  resp: Response;
+  requestlineItem: RequestLineItems;
+
+  constructor(private requestSvc: RequestService,
+    private requestLineSvc: RequestLineItemService,
+    private systemSvc: SystemService,
+    private router: Router,
+    private route: ActivatedRoute) { }
+
+
+
+/* export class RequestLinesComponent implements OnInit {
+  title: 'Request-Lines-Items'
   requestsLines: RequestLines = new RequestLines();
-  requestLines: RequestLineItems[]; 
-  title: 'Request-Lines'
-resp: Response;
+  requestLines: RequestLineItems[];  */
+  
+/* resp: Response;
   constructor(private requestSVC: RequestService, private router: Router,
-    private route:ActivatedRoute, private rlSVC: RequestLinesService) {}  // inject service
+    private route: ActivatedRoute, private rlSVC: RequestLinesService) {}  // inject service */
   
 
+    ngOnInit() {
+      this.route.params.subscribe(parms => this.id = parms['id']);      
+      this.requestSvc.get(this.id).subscribe(requests => {
+      this.request = requests;
+      }
+   );
+      if (this.lineId!='0'&&this.lineId!=null) {
+        this.delete();
+      }
+      this.request;
+      this.requestLineSvc.listByReq(this.id).subscribe(prlis => {
+      this.requestlineItems = prlis;
+        }
+      );
+    }
  
- 
-
-sortCriteria = 'request.Id'; // default sort criteria
+    submitReview() {
+      this.requestSvc.submitReview(this.request).subscribe(resp => {
+      this.resp = resp;
+      this.router.navigate(['/request/list']);
+        });
+      }
+    
+/*   
+      delete(): void {
+        this.requestLineSvc.delete(this.request.id).subscribe(res => {
+        this.router.navigateByUrl("/request");
+        });
+      } */
+    
+  
+   
+      delete(): void {
+      this.requestLineSvc.delete(this.requestlineItem.id).subscribe(res => {
+      this.router.navigateByUrl("/request");
+      });
+    }
+  
+    refresh(): void {
+      this.requestSvc.get(this.request.id).subscribe(resp => {
+      this.request = resp;
+    })
+  }
+}
+/* sortCriteria = 'request.Id'; // default sort criteria
 sortOrder = 'asc';
 title = 'Request-Lines';      //
 
@@ -51,3 +117,6 @@ title = 'Request-Lines';      //
   }
 
 
+  /* ngOnInit(): void {
+    throw new Error("Method not implemented."); 
+  } */

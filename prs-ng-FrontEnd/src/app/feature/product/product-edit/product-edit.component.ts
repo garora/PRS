@@ -4,6 +4,8 @@ import { ProductService } from '../../../service/product.service';
 import { Products } from '../../../model/products.class';
 import { VendorService } from '../../../service/vendor.service';
 import { Vendors } from '../../../model/vendors.class';
+import { SystemService } from '@svc/system.service';
+import { Users } from '@model/users.class';
 
 @Component({
   selector: 'app-product-edit',
@@ -15,13 +17,20 @@ export class ProductEditComponent implements OnInit {
   id: number;
   product: Products;
   vendorsList: Vendors[];
+  loggedInUser: Users;
 
   constructor(private prdSvc: ProductService,
               private vndrSvc: VendorService,
+              private systemSvc: SystemService,
               private router: Router,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.loggedInUser = this.systemSvc.getLoggedInUser();
+    console.log("user: ", this.loggedInUser);
+    if(this.loggedInUser.isAdmin == true)
+
+
     this.route.params.subscribe(params => this.id = params.id);
     this.prdSvc.get(this.id).subscribe(resp => {
       this.product = resp as Products;

@@ -1,9 +1,11 @@
+import { Users } from './../../../model/users.class';
 import { RequestLineItemService } from '../../../service/requestLineItem.service';
 import { RequestLineItems } from '../../../model/requestLineItems.class';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Requests } from '../../../model/requests.class';
 import { RequestService } from '../../../service/request.service';
+import { SystemService } from '@svc/system.service';
 
 @Component( {
   selector: 'app-request-approve',
@@ -13,18 +15,46 @@ import { RequestService } from '../../../service/request.service';
 export class RequestApproveComponent implements OnInit
 {
   title: string = 'Request:  Approve or Reject';
-  requestId: number;
+  id: number;
   request: Requests;
   resp: any;
   rl: RequestLineItems[];
+  lineId: string = '0';
   rejectionReason: string = '';
+  loggedInUser: Users;
 
   constructor ( private requestSvc: RequestService,
-    private rliSvc: RequestLineItemService,
+    private requestLineSvc: RequestLineItemService,
+    private systemSvc: SystemService,
     private router: Router,
     private route: ActivatedRoute ) { }
 
-  ngOnInit ()
+    ngOnInit() {
+      this.loggedInUser = this.systemSvc.getLoggedInUser();
+      console.log("user: ", this.loggedInUser);
+          this.route.params.subscribe(parms => this.id = parms['id']);
+          this.requestSvc.get(this.id).subscribe(requests => {
+          this.request = requests;
+        }
+      );
+
+      if (this.lineId!='0'&&this.lineId!=null) {
+        this.delete();
+    }
+        this.request;
+        this.requestLineSvc.listByReq(this.id).subscribe(resp => {
+        this.rl = resp;
+      }
+    );
+  }
+  delete(): void {
+    this.requestLineSvc.delete(this.request.id).subscribe(res => {
+    this.router.navigateByUrl("/request/review/"+this.id);
+      });
+  }
+
+ 
+      /*   /*   ngOnInit ()
   {
     let id = this.route.snapshot.params.id
     this.requestSvc.get( id ).subscribe( resp =>
@@ -33,12 +63,13 @@ export class RequestApproveComponent implements OnInit
       this.requestId = this.request.id;
       console.log( 'request detail' + this.requestId );
 
-    } );
+    }
+     ); 
 
     this.requestSvc.get( this.requestId ).subscribe( resp =>
     {
       this.resp = resp;
-    } );
+    } ); */
 
   }
   approve ()
