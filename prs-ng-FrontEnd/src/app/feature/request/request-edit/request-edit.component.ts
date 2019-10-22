@@ -1,7 +1,11 @@
+import { Users } from './../../../model/users.class';
+import { Requests } from './../../../model/requests.class';
 import { Component, OnInit } from '@angular/core';
 import { RequestService } from '@svc/request.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Requests } from '@model/requests.class';
+import { SystemService } from '@svc/system.service';
+import { UserService } from '@svc/user.service';
 
 @Component({
   selector: 'app-request-edit',
@@ -12,12 +16,18 @@ import { Requests } from '@model/requests.class';
 export class RequestEditComponent implements OnInit {
   title: 'Request-Edit';
   id: number;
-  resp: any;
   request: Requests;
+  user: Users[];
+  resp: any;
+  loggedInUserId: Users["id"];
+  loggedInUser: Users;
+
  
 
   constructor(private requestSvc: RequestService,
+    private systemSvc: SystemService,
     private router: Router,
+    private userSvc: UserService,
     private route: ActivatedRoute) { }
 
     // need to get id request from request, get the associated request record
@@ -27,6 +37,11 @@ export class RequestEditComponent implements OnInit {
    // because asynchronous, nesting them forces get(parms.id) to run first
 
   ngOnInit() {
+    if(this.systemSvc.data.user.loggedIn) {
+      this.request.user = this.systemSvc.data.user.instance;
+    }
+    this.loggedInUser = this.systemSvc.data.getLoggedInUser();
+    console.log("user: ", this.loggedInUser); 
     this.route.params.subscribe(parms => {
       this.requestSvc.get(parms.id).subscribe(resp => {
         this.request = resp as Requests;

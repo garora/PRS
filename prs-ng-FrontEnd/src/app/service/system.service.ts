@@ -12,24 +12,29 @@ export class SystemService {
  
 private loggedInUser: Users | null = null;
  
- 
+data = {
+  about: 'System Service',
+  user: {
+    loggedIn: false,
+    instance: null
+},
 setLoggedInUser(user: Users): void {
   this.loggedInUser = user;
-}
+},
  
 getLoggedInUser(): Users | null {
   return this.loggedInUser;
-}
+},
  
 isUserLoggedIn(): boolean
- { return this.loggedInUser!= null }
+ { return this.loggedInUser!= null },
  
  
 isAdmin(): boolean {
   if(this.isUserLoggedIn())
   return false
   return this.getLoggedInUser().isAdmin;
-}
+},
  
 isReviewer(): boolean {
   if(!this.isUserLoggedIn())
@@ -37,7 +42,7 @@ isReviewer(): boolean {
   return this.getLoggedInUser().isReviewer;
   }
 }
-
+}
 
 /* export class SystemService {    // this allows you to store user
   data = {

@@ -19,7 +19,7 @@ export class RequestApproveComponent implements OnInit
   id: number;
   request: Requests;
   resp: any;
-  rl: RequestLineItems[];
+  requestLineItems: RequestLineItems[];
   lineId: string = '0';
   rejectionReason: string = '';
   loggedInUser: Users;
@@ -31,7 +31,7 @@ export class RequestApproveComponent implements OnInit
     private route: ActivatedRoute ) { }
 
     ngOnInit() {
-      this.loggedInUser = this.systemSvc.getLoggedInUser();
+      this.loggedInUser = this.systemSvc.data.getLoggedInUser();
       console.log("user: ", this.loggedInUser);
           this.route.params.subscribe(parms => this.id = parms['id']);
           this.requestSvc.get(this.id).subscribe(requests => {
@@ -44,7 +44,7 @@ export class RequestApproveComponent implements OnInit
     }
         this.request;
         this.requestLineItemService.listById(this.id).subscribe(resp => {
-        this.rl = resp;
+        this.requestLineItems = resp;
       }
     );
   }

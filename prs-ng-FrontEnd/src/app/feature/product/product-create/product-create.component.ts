@@ -26,13 +26,13 @@ export class ProductCreateComponent implements OnInit {
               private router: Router) { }
  
   ngOnInit() {
-    this.loggedInUser = this.systemSvc.getLoggedInUser();
-    console.log("Logged in user is: ", this.loggedInUser);
+    this.loggedInUser = this.systemSvc.data.getLoggedInUser();
+    console.log('user: ', this.loggedInUser);
     if(this.loggedInUser.isAdmin==true) {
     this.vndrSvc.list().subscribe(resp => {
     this.vendorList = resp as Vendors[];
     });
-  }
+  } else {'You don’t have administrative authority.'}
 }
  
   create() {

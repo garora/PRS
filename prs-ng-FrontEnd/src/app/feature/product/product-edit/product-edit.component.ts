@@ -26,15 +26,13 @@ export class ProductEditComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.loggedInUser = this.systemSvc.getLoggedInUser();
-    console.log("user: ", this.loggedInUser);
-    if(this.loggedInUser.isAdmin == true)
-
-
-    this.route.params.subscribe(params => this.id = params.id);
-    this.prdSvc.get(this.id).subscribe(resp => {
-      this.product = resp as Products;
-      this.vndrSvc.list().subscribe(jresp => {
+    this.loggedInUser = this.systemSvc.data.getLoggedInUser();
+    console.log('user: ', this.loggedInUser);
+      if(this.loggedInUser.isAdmin == true)
+        this.route.params.subscribe(params => this.id = params.id);
+        this.prdSvc.get(this.id).subscribe(resp => {
+        this.product = resp as Products;
+        this.vndrSvc.list().subscribe(jresp => {
         this.vendorsList = jresp as Vendors[];
       });
     });

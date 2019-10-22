@@ -1,9 +1,13 @@
 
+import { Requests } from '@model/requests.class';
+import { Users } from '@model/users.class';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Requests } from '../../../model/requests.class';
 import { RequestService } from '../../../service/request.service';
 import { SystemService } from '../../../service/system.service';
+import { UserService } from '@svc/user.service';
+import { ProductService } from '@svc/product.service';
+import { Products } from '@model/products.class';
 
 
 @Component({
@@ -15,32 +19,35 @@ export class RequestCreateComponent implements OnInit {
 request: Requests = new Requests();
 title: 'Request-Create';
 resp: any;
-
-
-  constructor(private requestSvc: RequestService, private sysSvc: SystemService,
-              private router: Router ) {    //  injects property into component (then we need to forward it )
+loggedInUser : Users;
+products: Products[];
+product: Products;
+  
+  constructor(private requestSvc: RequestService,  
+    private userSvc: UserService,
+    private systemSvc: SystemService,
+    private productSvc: ProductService,
+    private router: Router ) {    //  injects property into component (then we need to forward it )
   }
 
   ngOnInit() {
-    if(this.sysSvc.data.user.loggedIn) {
-      this.request.user = this.sysSvc.data.user.instance;
+    if(this.systemSvc.data.user.loggedIn) {
+      this.request.user = this.systemSvc.data.user.instance;
     } else {
       console.error("Please log in.");
     }
+    this.loggedInUser = this.systemSvc.data.getLoggedInUser();
+    console.log("user: ", this.loggedInUser);
   };
-
       //   this is all we need to save request
   create() {
     this.requestSvc.create(this.request).subscribe( resp => {
-    this.request = resp.Data;
-      // console.log('1');
+    this.request = resp.data;     
       console.log(resp);           //  success
       this.router.navigateByUrl('/request-create"/list');    // needs injected into constructor
     },
     err => {
-      // console.log('2');
-      console.log(err);            //  error
-
+     console.log(err);            //  error
     }
-    );
-  }}
+  );
+}}
