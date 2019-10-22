@@ -45,7 +45,7 @@ export class ProductCreateComponent implements OnInit {
 
 
 
-
+}
 /* 
 export class ProductCreateComponent implements OnInit {
   title = 'Product Create';

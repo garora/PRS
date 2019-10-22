@@ -38,7 +38,7 @@ import { Users } from '../model/users.class';
   }
 
 
-  submitreview(request: Requests): Observable< any> {
+  submitReview(request: Requests): Observable< any> {
     return this.http.put(this.url + '/Review/'+request.id, Requests) as Observable<any>;
  }
 
@@ -47,8 +47,8 @@ import { Users } from '../model/users.class';
   return this.http.post(this.url + '/Approved/' + request.id,  request) as Observable<any>;
 }
 
-reject(request: Requests): Observable<any> {
-  return this.http.post(this.url + ‘/Rejected/’ + id, Requests) as Observable<any>;
+reject(id: number): Observable<any> {
+  return this.http.post(this.url + '/Rejected/' + id, Requests) as Observable<any>;
 }
 
 

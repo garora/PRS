@@ -12,9 +12,10 @@ import { SystemService } from '@svc/system.service';
   templateUrl: './request-approve.component.html',
   styleUrls: [ './request-approve.component.css' ]
 } )
+
 export class RequestApproveComponent implements OnInit
 {
-  title: string = 'Request:  Approve or Reject';
+  title: string = 'Request: Approve';
   id: number;
   request: Requests;
   resp: any;
@@ -24,7 +25,7 @@ export class RequestApproveComponent implements OnInit
   loggedInUser: Users;
 
   constructor ( private requestSvc: RequestService,
-    private requestLineSvc: RequestLineItemService,
+    private requestLineItemService: RequestLineItemService,
     private systemSvc: SystemService,
     private router: Router,
     private route: ActivatedRoute ) { }
@@ -42,19 +43,25 @@ export class RequestApproveComponent implements OnInit
         this.delete();
     }
         this.request;
-        this.requestLineSvc.listByReq(this.id).subscribe(resp => {
+        this.requestLineItemService.listById(this.id).subscribe(resp => {
         this.rl = resp;
       }
     );
   }
   delete(): void {
-    this.requestLineSvc.delete(this.request.id).subscribe(res => {
+    this.requestLineItemService.delete(this.request.id).subscribe(res => {
     this.router.navigateByUrl("/request/review/"+this.id);
       });
   }
 
+  renew(): void {
+    this.requestSvc.get(this.request.id).subscribe(resp => {
+      this.request = resp;
+    });
+
  
-      /*   /*   ngOnInit ()
+      /*
+    ngOnInit ()
   {
     let id = this.route.snapshot.params.id
     this.requestSvc.get( id ).subscribe( resp =>
@@ -84,7 +91,7 @@ export class RequestApproveComponent implements OnInit
 
   reject ()
   {
-    this.requestSvc.reject( this.request ).subscribe(
+    this.requestSvc.reject( this.request.id ).subscribe(
       resp =>
       {
         this.resp = resp;

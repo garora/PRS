@@ -1,3 +1,4 @@
+import { RequestLineItems } from '@model/requestLineItems.class';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -16,6 +17,10 @@ import { Users } from '../model/users.class';
 
   list(): Observable<Requests[]> {
     return this.http.get(this.url) as Observable<Requests[]>;
+  }
+
+  listById(id): Observable<RequestLineItems[]> {
+    return this.http.get(this.url+"/?id="+id) as Observable<RequestLineItems[]>;
   }
 
   get(id: number): Observable<Requests> {

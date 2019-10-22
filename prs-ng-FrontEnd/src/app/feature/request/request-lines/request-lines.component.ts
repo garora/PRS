@@ -1,5 +1,5 @@
+import { Requests } from './../../../model/requests.class';
 import { Component, OnInit } from '@angular/core';
-import { Requests } from '../../../model/requests.class';
 import { SystemService } from '../../../service/system.service';
 import { RequestService } from '../../../service/request.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -17,19 +17,17 @@ export class RequestLinesComponent implements OnInit {
  /*  ngOnInit(): void {
     throw new Error("Method not implemented.");
   } */
-  title: string = 'Request Line Items';
+  title: string = 'Requested Items';
   id: number;
   loggedInUserId: Users["id"];
   lineId: string = '0';
-  request: Request;
-  RequestLines: RequestLineItems[];
-  RequestLine: RequestLineItems;
-
-  resp: Response;
-  requestlineItem: RequestLineItems;
+  resp: any;
+  request: Requests;
+  requestLineItems: RequestLineItems[];
+  requestLineItem: RequestLineItems;
 
   constructor(private requestSvc: RequestService,
-    private requestLineSvc: RequestLineItemService,
+    private requestLineItemService: RequestLineItemService,
     private systemSvc: SystemService,
     private router: Router,
     private route: ActivatedRoute) { }
@@ -56,8 +54,8 @@ export class RequestLinesComponent implements OnInit {
         this.delete();
       }
       this.request;
-      this.requestLineSvc.listByReq(this.id).subscribe(prlis => {
-      this.requestlineItems = prlis;
+      this.requestLineItemService.listById(this.id).subscribe(prlis => {
+      this.requestLineItems = prlis;
         }
       );
     }
@@ -79,12 +77,12 @@ export class RequestLinesComponent implements OnInit {
   
    
       delete(): void {
-      this.requestLineSvc.delete(this.requestlineItem.id).subscribe(res => {
+      this.requestLineItemService.delete(this.requestLineItem.id).subscribe(res => {
       this.router.navigateByUrl("/request");
       });
     }
   
-    refresh(): void {
+    renew(): void {
       this.requestSvc.get(this.request.id).subscribe(resp => {
       this.request = resp;
     })
