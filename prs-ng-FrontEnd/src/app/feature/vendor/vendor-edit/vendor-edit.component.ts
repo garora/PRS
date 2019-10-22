@@ -28,8 +28,8 @@ export class VendorEditComponent implements OnInit {
   //  Vendors is plural due to table in db named with plural
    // because asynchronous, nesting them forces get(parms.id) to run first
   ngOnInit() {   
-    this.loggedInUser = this.systemSvc.getLoggedInUser();
-    console.log("user: ", this.loggedInUser);
+    this.loggedInUser = this.systemSvc.data.getLoggedInUser();
+    console.log('user: ', this.loggedInUser);
     if(this.loggedInUser.isAdmin == true) {
   
     this.route.params.subscribe(parms => {     

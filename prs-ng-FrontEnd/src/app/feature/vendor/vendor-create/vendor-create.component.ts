@@ -20,8 +20,8 @@ export class VendorCreateComponent implements OnInit {
     private router: Router) { }   //  injects property into component (then we need to forward it )
 
   ngOnInit() {
-    this.loggedInUser = this.systemSvc.getLoggedInUser();
-    console.log("user: ", this.loggedInUser);
+    this.loggedInUser = this.systemSvc.data.getLoggedInUser();
+    console.log('user: ', this.loggedInUser);
   }
   create() {
     this.vendorSvc.create(this.vendor).subscribe( resp => {   //   this is all we need to save user

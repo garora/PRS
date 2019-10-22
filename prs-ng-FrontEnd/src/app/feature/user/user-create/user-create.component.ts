@@ -5,17 +5,17 @@ import { Router } from '@angular/router';
 import { UserService } from '../../../service/user.service';
 import { SystemService } from '@svc/system.service';
 
-
-
 @Component({
   selector: 'app-user-create',
   templateUrl: './user-create.component.html',
   styleUrls: ['./user-create.component.css']
 })
+
 export class UserCreateComponent implements OnInit {
 user: Users = new Users();
 title: string = 'User-Create';
 loggedInUser: Users;
+
   constructor(private userSvc: UserService,
     private systemSvc: SystemService,
               private router: Router ) {    //  injects property into component (then we need to forward it )
@@ -23,9 +23,8 @@ loggedInUser: Users;
   }
 
   ngOnInit() {
-    this.loggedInUser = this.systemSvc.getLoggedInUser();
-    console.log("user: ", this.loggedInUser);
-
+    this.loggedInUser = this.systemSvc.data.getLoggedInUser();
+    console.log('user: ', this.loggedInUser);
   }
 
   create() {

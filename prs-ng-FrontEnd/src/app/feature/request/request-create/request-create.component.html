@@ -1,27 +1,29 @@
 <div id='component'>
   <div id='pagetitle'>
     <span>[{{title}}]</span>
-    <span><a routerLink='/request/list'>Back to list</a></span>
+ <!-- <span><a routerLink='/request/create'>New Request</a></span>          
+    <span><a routerLink='/request/list'>Back to list</a></span> -->
   </div>
   <p *ngIf='!request'>Loading...</p>
-  <div *ngIf='request'>
+  <span *ngIf='this.loggedInUser.isAdmin == true'>          
+    <!-- <div *ngIf='request'> -->
 
     <div class="form-group row">
-     <label class='col-form-label col-sm-2' for="requestUser">User Name:</label>
+     <label class='col-form-label col-sm-2' for="requestUser">Username:</label>
       <input [(ngModel)]='request.user.username' name='Request' type="text" class="form-control col-sm-6" id="requestuser"
        aria-describedby="requestUserHelp" placeholder="Request">
       <small id="requestUserHelp" class="form-text text-muted col-sm-2">Request's User</small>
     </div>
 
     <div class="form-group row">
-      <label class='col-form-label col-sm-2' for="requestdescription">Description:</label>
+      <label class='col-form-label col-sm-2' for="requesDdescription">Description:</label>
       <input [(ngModel)]='request.description' name='Description' type="text" class="form-control col-sm-6" id="requestdescription"
         aria-describedby="descriptionHelp" placeholder="Description">
       <small id="descriptionHelp" class="form-text text-muted col-sm-2">Request's Description</small>
     </div>
 
     <div class="form-group row">
-      <label class='col-form-label col-sm-2' for="requestjustification">Justification:</label>
+      <label class='col-form-label col-sm-2' for="requestJustification">Justification:</label>
       <input [(ngModel)]='request.justification' name='Justification' type="text" class="form-control col-sm-6" id="requestjustification"
         aria-describedby="justificationHelp" placeholder="Justification">
       <small id="justificationHelp" class="form-text text-muted col-sm-2">Request's Justification</small>

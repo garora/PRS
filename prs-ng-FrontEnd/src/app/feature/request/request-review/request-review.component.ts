@@ -1,33 +1,46 @@
 import { Users } from './../../../model/users.class';
-
 import { Component, OnInit } from '@angular/core';
 import { Requests } from '../../../model/requests.class';
 import { SystemService } from '../../../service/system.service';
 import { RequestService } from '../../../service/request.service';
+import { RequestLinesComponent } from '../request-lines/request-lines.component';
+import { RequestLineItemService } from '@svc/requestLineItem.service';
 
 
 @Component({
-  selector: 'app-request-lines',
+  selector: 'app-request-review',
   templateUrl: './request-review.component.html',
   styleUrls: ['./request-review.component.css']
 })
 
 export class RequestReviewComponent implements OnInit {
   requests: Requests[];   // property used in component typescript file to store list of requests once the service method is called
+  loggedInUser: Users;
+  sortCriteria = 'Id';
+  sortOrder = 'asc';
   user: Users;
+  request: Request;
   resp: Response;
+  title = "Request Review List";
+  requestlines: RequestLinesComponent;
 
-  constructor(private requestSvc: RequestService, private sysSvc: SystemService ) {}  // inject service
+  
+  constructor(private requestSvc: RequestService, 
+          private systemSvc: SystemService,
+          private requestlineItemSvc: RequestLineItemService ) {}  // inject service
+
   ngOnInit() {
-
-      this.user = this.sysSvc.data.user.instance;
-
+    this.loggedInUser = this.systemSvc.data.getLoggedInUser();
+    console.log("Logged in user is: ", this.loggedInUser);
+    this.user = this.loggedInUser;
+this.user = this.systemSvc.data.user.instance;
     this.requestSvc.listReview(this.user.id).subscribe(
-      resp => {
-        this.resp = resp;
-        this.requests = this.resp as Requests[];
+      resp => {   
+        this.requests = resp as Requests[];
       });
-
+      if (this.loggedInUser.isReviewer!==true) {
+        console.log('You don’t have administrative authority.');
+       }
 
     }
 

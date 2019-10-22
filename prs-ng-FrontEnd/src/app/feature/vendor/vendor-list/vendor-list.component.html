@@ -3,7 +3,7 @@
   <div class='lefthalf'>
     <span class='component-title'>[{{title}}] </span>
     <span><a *ngIf='loggedInUser.isAdmin' routerLink='/vendor/create'>
-        <span><a routerLink='/vendor/create'>
+        <!-- <span><a routerLink='/vendor/create'> -->
         <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'>
     </a>
     </span>
@@ -13,6 +13,8 @@
 <table class="table table-sm" *ngIf='vendors'>
   <tr>
     <th class='table-secondary'></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
+      (click)="sortBy('id')"><u>Id</u></a></th>
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
         (click)="sortBy('name')"><u>Name</u></a></th>
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
@@ -36,9 +38,9 @@
     <td>{{vendor.phone}}</td>
     <td>{{vendor.email}}</td>
     <td class='actions'>
-      <a routerLink='/vendor/detail/{{vendor.id}}' style='padding-left: 16px' class='actionIcon'><img src='assets/details.png' width='20' height='20' title='Detail'></a>
+      <!-- <a routerLink='/vendor/detail/{{vendor.id}}' style='padding-left: 16px' class='actionIcon'><img src='assets/details.png' width='20' height='20' title='Detail'></a> -->
       <a *ngIf='loggedInUser.isAdmin' routerLink='/vendor/edit/{{vendor.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a>
-     <a routerLink='/vendor/edit/{{vendor.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a></td>
+     <!-- <a routerLink='/vendor/edit/{{vendor.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a></td> -->
       </tr>
 </table>
 

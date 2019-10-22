@@ -1,5 +1,4 @@
 import { Users } from './../../../model/users.class';
-import { Requests } from './../../../model/requests.class';
 import { Component, OnInit } from '@angular/core';
 import { RequestService } from '@svc/request.service';
 import { Router, ActivatedRoute } from '@angular/router';

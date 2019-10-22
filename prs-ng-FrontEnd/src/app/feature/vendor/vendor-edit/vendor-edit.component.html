@@ -4,8 +4,9 @@
           <span>[{{title}}]</span>
         </div>
         <p *ngIf='!vendor'>Loading...</p>
-        <div *ngIf='vendor'>
-      ​
+        <p *ngIf='loggedInUser.isAdmin !== true'>You don’t have administrative authority.</p>
+        <div *ngIf='loggedInUser.isAdmin == true'>
+        <div *ngIf='vendor'>      ​
           <div class="form-group row">
             <label class='col-form-label col-sm-2' for="vendorname">First name:</label>
             <input [(ngModel)]='vendor.name' name='FirstName' type="text" class="form-control col-sm-6" id="vendorfirstname"
@@ -64,7 +65,7 @@
           </div>
           
           <div class='form-group'>
-            <button (click)='edit();' class='btn btn-primary'>Save Changes</button>
+            <button (click)='edit();' class='btn btn-primary'>EDIT</button>
           </div>
         </div>
       </div>

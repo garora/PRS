@@ -2,9 +2,13 @@
     <div id='pagetitle'>
         <span>[{{title}}]</span>
     </div>
+    <span><a routerLink='/vendor/list'>Back to list</a></span>
     <p *ngIf='!vendor'>Loading...</p>
-    <div *ngIf='vendor'>
-        ​
+    <p *ngIf='loggedInUser.isAdmin !== true'>You don’t have administrative authority.</p>
+    <span><a routerLink='/request/list'></a></span>
+    <div *ngIf='loggedInUser.isAdmin == true'> 
+     
+               <div *ngIf='vendor'>        ​
         <div class="form-group row">
             <label class='col-form-label col-sm-2' for="vendorname">Name:</label>
             <input [(ngModel)]='vendor.name' name='Name' type="text" class="form-control col-sm-6" id="vendorname"
@@ -61,7 +65,7 @@
             <small id="emailHelp" class="form-text text-muted col-sm-2">Vendor's Email</small>
         </div>
         <div class='form-group'>
-            <button (click)='create();' class='btn btn-primary'>Create</button>
+            <button (click)='create();' class='btn btn-primary'>CREATE</button>
         </div>
     </div>
 </div>

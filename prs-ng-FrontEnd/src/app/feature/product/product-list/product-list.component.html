@@ -1,7 +1,7 @@
 <div class='component-content'>
   <div class='lefthalf'>
     <span class='component-title'>[{{title}}] </span>
-    <span *ngIf='loggedInUser.IsAdmin'><a routerLink='/product/create'>
+        <span *ngIf='loggedInUser.IsAdmin'><a routerLink='/product/create'>
     <span><a routerLink='/product/create'>
         <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
     </span>
@@ -30,7 +30,7 @@
     <td class='actions'>
       <a routerLink='/product/detail/{{product.id}}' style='padding-left: 16px' class='actionIcon'><img
           src='assets/details.png' width='20' height='20' title='Detail'></a>
-      <a *ngIf='loggedInUser.IsAdmin' routerLink='/product/edit/{{product.id}}' class='actionIcon'><img>
+           <a *ngIf='loggedInUser.IsAdmin' routerLink='/product/edit/{{product.id}}' class='actionIcon'><img>
       <a routerLink='/product/edit/{{product.id}}' class='actionIcon'><img
           src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a>
     <td>

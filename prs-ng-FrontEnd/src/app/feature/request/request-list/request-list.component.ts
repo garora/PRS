@@ -31,14 +31,15 @@ constructor(private requestSvc: RequestService,
     private requestlineItemSvc: RequestLineItemService)  {}  // inject service
 
   ngOnInit() {
-      this.requestSvc.list().subscribe(
+    this.requestSvc.list().subscribe(
         resp => {
           this.requests = resp as Requests[];
+        });
           this.loggedInUser = this.systemSvc.data.getLoggedInUser();
-          console.log(this.loggedInUser);
+          console.log("user: ", this.loggedInUser);
 }
-    );
-  }
+   
+
 
   sortBy(column: string): void {    // sort by added to nav bar
     if (this.sortCriteria === column) {
@@ -47,7 +48,9 @@ constructor(private requestSvc: RequestService,
       this.sortCriteria = column;   // can change the column that you want to sort by or the order
       this.sortOrder = 'asc';
     }
-  }// Finish updating this and request-list.html later with bootstrap stuff  ex:thead-dark-->
+  }
+    }
+    // Finish updating this and request-list.html later with bootstrap stuff  ex:thead-dark-->
 
    // populate list of requests
   // check sysservice for logged in request
@@ -57,6 +60,6 @@ constructor(private requestSvc: RequestService,
   //   resp => {
   //     this.requests = resp;
   //     console.log(this.requests);
-}
+
 
 
