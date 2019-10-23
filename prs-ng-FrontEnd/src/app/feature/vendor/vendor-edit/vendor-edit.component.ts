@@ -5,57 +5,62 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Vendors } from '@model/vendors.class';
 import { SystemService } from '@svc/system.service';
 
-@Component({
+@Component( {
   selector: 'app-vendor-edit',
   templateUrl: './vendor-edit.component.html',
-  styleUrls: ['./vendor-edit.component.css']
-})
+  styleUrls: [ './vendor-edit.component.css' ]
+} )
 
-export class VendorEditComponent implements OnInit {
+export class VendorEditComponent implements OnInit
+{
   vendor: Vendors = new Vendors();
-  title: string = 'Vendor-Edit';
+  title: string = 'Edit Vendor';
   loggedInUser: Users;
-  
-  constructor(private vendorSvc: VendorService,
+
+  constructor ( private vendorSvc: VendorService,
     private systemSvc: SystemService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute ) { }
 
 
-    // need to get id vendor from request, get the associated vendor record
+  // need to get id vendor from request, get the associated vendor record
   // ngOnInit is the first thing on page called
   // One of PARAMETER accepts id from JSON.  
-  //  Vendors is plural due to table in db named with plural
-   // because asynchronous, nesting them forces get(parms.id) to run first
-  ngOnInit() {   
-    this.loggedInUser = this.systemSvc.data.getLoggedInUser();
-    console.log('user: ', this.loggedInUser);
-    if(this.loggedInUser.isAdmin == true) {
-  
-    this.route.params.subscribe(parms => {     
-      this.vendorSvc.get(parms.id).subscribe(resp => {
-        this.vendor = resp as Vendors;  
-       
-        console.log('vendor edit' + this.vendor.id);
-      })
-    });
-}
+  // because asynchronous, nesting them forces get(parms.id) to run first
+  ngOnInit ()
+  {
+    this.loggedInUser = this.systemSvc.getLoggedInUser();
+    console.log( 'user: ', this.loggedInUser );
+    if ( this.loggedInUser.isAdmin == true )
+    {
+      this.route.params.subscribe( parms =>
+      {
+        this.vendorSvc.get( parms.id ).subscribe( resp =>
+        {
+          this.vendor = resp as Vendors;
+          console.log( 'vendor edit' + this.vendor.id );
+        } )
+      } );
+    }
   }
-edit() {
-  this.vendorSvc.edit(this.vendor).subscribe( resp => {   //   this is all we need to save vendor
-    //  success    
-    console.log(resp);
-    this.router.navigateByUrl('/vendor/list');   // needs injected into constructor
+  edit ()
+  {
+    this.vendorSvc.edit( this.vendor ).subscribe( resp =>
+    {   //   this is all we need to save vendor
+      //  success    
+      console.log( resp );
+      this.router.navigateByUrl( '/vendor/list' );   // needs injected into constructor
 
-  },    
-  err => {
-    //  error   
-    console.log(err);
+    },
+      err =>
+      {
+        //  error   
+        console.log( err );
+      }
+    );
   }
-  );
-}
 
 }
 
-
+// this.loggedInUser = this.systemSvc.data.getLoggedInUser();
 

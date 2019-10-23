@@ -30,53 +30,62 @@ export class RequestApproveComponent implements OnInit
     private router: Router,
     private route: ActivatedRoute ) { }
 
-    ngOnInit() {
-      this.loggedInUser = this.systemSvc.data.getLoggedInUser();
-      console.log("user: ", this.loggedInUser);
-          this.route.params.subscribe(parms => this.id = parms['id']);
-          this.requestSvc.get(this.id).subscribe(requests => {
-          this.request = requests;
-        }
-      );
-
-      if (this.lineId!='0'&&this.lineId!=null) {
-        this.delete();
+  ngOnInit ()
+  {
+    // this.loggedInUser = this.systemSvc.data.getLoggedInUser();
+    this.loggedInUser = this.systemSvc.getLoggedInUser();
+    console.log( "user: ", this.loggedInUser );
+    this.route.params.subscribe( parms => this.id = parms[ 'id' ] );
+    this.requestSvc.get( this.id ).subscribe( requests =>
+    {
+      this.request = requests;
     }
-        this.request;
-        this.requestLineItemService.listById(this.id).subscribe(resp => {
-        this.requestLineItems = resp;
-      }
+    );
+
+    if ( this.lineId != '0' && this.lineId != null )
+    {
+      this.delete();
+    }
+    this.request;
+    this.requestLineItemService.listById( this.id ).subscribe( resp =>
+    {
+      this.requestLineItems = resp;
+    }
     );
   }
-  delete(): void {
-    this.requestLineItemService.delete(this.request.id).subscribe(res => {
-    this.router.navigateByUrl("/request/review/"+this.id);
-      });
+  delete (): void
+  {
+    this.requestLineItemService.delete( this.request.id ).subscribe( res =>
+    {
+      this.router.navigateByUrl( "/request/review/" + this.id );
+    } );
   }
 
-  renew(): void {
-    this.requestSvc.get(this.request.id).subscribe(resp => {
-      this.request = resp;
-    });
-
- 
-      /*
-    ngOnInit ()
+  renew (): void
   {
-    let id = this.route.snapshot.params.id
-    this.requestSvc.get( id ).subscribe( resp =>
+    this.requestSvc.get( this.request.id ).subscribe( resp =>
     {
-      this.request = resp as Requests;
-      this.requestId = this.request.id;
-      console.log( 'request detail' + this.requestId );
+      this.request = resp;
+    } );
 
-    }
-     ); 
 
-    this.requestSvc.get( this.requestId ).subscribe( resp =>
-    {
-      this.resp = resp;
-    } ); */
+    /*
+  ngOnInit ()
+{
+  let id = this.route.snapshot.params.id
+  this.requestSvc.get( id ).subscribe( resp =>
+  {
+    this.request = resp as Requests;
+    this.requestId = this.request.id;
+    console.log( 'request detail' + this.requestId );
+
+  }
+   ); 
+
+  this.requestSvc.get( this.requestId ).subscribe( resp =>
+  {
+    this.resp = resp;
+  } ); */
 
   }
   approve ()
@@ -85,7 +94,7 @@ export class RequestApproveComponent implements OnInit
       resp =>
       {
         this.resp = resp;
-        this.router.navigateByUrl('/request/review');
+        this.router.navigateByUrl( '/request/review' );
       } )
   }
 
