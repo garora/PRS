@@ -5,6 +5,10 @@
       </div>
     </div>
     <table class="table table-sm" *ngIf='product'>
+        <tr>
+            <td>ID</td>
+            <td>{{ product.id }}</td>
+          </tr>
       <tr>
         <td>Name</td>
         <td>{{ product.name }}</td>
@@ -35,12 +39,12 @@
       </tr>
       <tr>
         <td colspan="2">
-            <a *ngIf='loggedInUser.admin || loggedInUser.userName == user.userName' routerLink='/product/edit/{{product.id}}' class='btn btn-primary' title='Edit' style='margin-right: 5px'>Edit</a>
+            <!-- <a *ngIf='loggedInUser.admin || loggedInUser.userName == user.userName' routerLink='/product/edit/{{product.id}}' class='btn btn-primary' title='Edit' style='margin-right: 5px'>Edit</a> -->
 
-          <!-- <a routerLink='/product/edit/{{product.id}}' class='btn btn-primary' title='Edit' style='margin-right: 5px'>Edit</a>
-          <button (click)="remove()" class='btn btn-danger' title='Delete'>Remove</button> -->
-
-          <button *ngIf='loggedInUser.admin' (click)="remove()" class='btn btn-danger' title='Delete'>Remove</button>
+          <a routerLink='/product/edit/{{product.id}}' class='btn btn-primary' title='Edit' style='margin-right: 5px'>Edit</a>
+          <button (click)="remove()" class='btn btn-danger' title='Delete'>Remove</button>
+<!-- 
+          <button *ngIf='loggedInUser.admin' (click)="remove()" class='btn btn-danger' title='Delete'>Remove</button> -->
          </td>
       </tr>
     </table>

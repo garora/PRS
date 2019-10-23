@@ -1,11 +1,11 @@
 <div id='component'>
   <div id='pagetitle'>
     <span>[{{title}}]</span>
- <!-- <span><a routerLink='/request/create'>New Request</a></span>          
-    <span><a routerLink='/request/list'>Back to list</a></span> -->
+ <span><a routerLink='/request/create'>New Request</a></span>          
+    <span><a routerLink='/request/list'>Back to list</a></span>
   </div>
   <p *ngIf='!request'>Loading...</p>
-  <span *ngIf='this.loggedInUser.isAdmin == true'>          
+  <!-- <span *ngIf='this.loggedInUser.isAdmin == true'>           -->
     <!-- <div *ngIf='request'> -->
 
     <div class="form-group row">

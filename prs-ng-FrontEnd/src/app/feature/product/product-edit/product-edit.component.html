@@ -1,13 +1,12 @@
-
 <div class='component-content'>
   <div>
     <span class='component-title'>[{{title}}]</span>
   </div>
   <p *ngIf='!product'>Loading...</p>
-      <p *ngIf='!product'>Loading...</p>
-      <p *ngIf='loggedInUser.isAdmin !== true'> You don’t have administrative authority </p>
+  <!-- <p *ngIf='loggedInUser.isAdmin !== true'>This action requires administrative authority. </p>
+  <div *ngIf='loggedInUser.isAdmin == true'> -->
   <div *ngIf='product'></div>
-  <div *ngIf='product&&product.vendor'>
+  <!-- <div *ngIf='product&&product.vendor'> -->
     <hr />
     <div class="form-group row">
       <label class='col-form-label col-sm-2' for="vendor">Vendor:</label>

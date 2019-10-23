@@ -1,15 +1,12 @@
-<div>
-</div>
 <div class='component-content'>
   <div>
     <span class='component-title'>[{{title}}] | </span>
-    <!-- | <span><a routerLink='/product/create'>New Product</a></span> -->
+    | <span><a routerLink='/product/create'>New Product</a></span>
     <span><a routerLink='/product/list'>Back to list</a></span>
   </div>
-   <p *ngIf='loggedInUser.isAdmin !== true'>You don’t have administrative authority.</p>
-  <div *ngIf='loggedInUser.isAdmin == true'>
+  <!-- <p *ngIf='loggedInUser.isAdmin !== true'>You don’t have administrative authority.</p>
+  <div *ngIf='loggedInUser.isAdmin == true'> -->
   <p *ngIf='undefined'>Loading ...</p>
-
 
   <div *ngIf='product'>
     <div class='form-group row'>
@@ -51,7 +48,7 @@
       <small id="photoPathHelp" class="form-text text-muted col-sm-2">Product's PhotoPath</small>
     </div>
     <div class='form-group'>
-      <button (click)='create()' class='btn btn-primary'>Create</button>
+      <button (click)='create()' class='btn btn-primary'>c\create</button>
     </div>
   </div>
 </div>

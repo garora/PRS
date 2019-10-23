@@ -3,12 +3,7 @@
     <div class='lefthalf'>
       <span class='component-title'>[{{title}}]</span>
     </div>
-  </div>
-  <div>
-      <div>
-   <tr *ngIf="!requestLine"><td>Please Enter a request below</td></tr>
-      </div>
-    </div>
+  </div> 
   <table class="table table-sm" *ngIf='request'>
     <tr>
       <td>Id</td>
@@ -40,6 +35,7 @@
   </tr>
   <tr>
       <td>User</td>
+      <td>{{ request.user.username}}</td>
     <tr>
       <td>Rejection Reason</td>
       <td>{{ request.rejectionReason }}</td>
@@ -47,13 +43,21 @@
     <tr>
     <tr>
       <td colspan="2">
-        <a *ngIf='loggedInUser.admin || loggedInUser.userName == user.userName' routerLink='/request/edit/{{request.id}}' class='btn btn-primary' title='Edit' style='margin-right: 5px'>Edit</a>
+        <!-- <a *ngIf='loggedInUser.admin || loggedInUser.userName == user.userName' routerLink='/request/edit/{{request.id}}' class='btn btn-primary' title='Edit' style='margin-right: 5px'>Edit</a> -->
+        <!-- <button *ngIf='loggedInUser.admin' (click)="remove()" class='btn btn-danger' title='Delete'>Remove</button> -->
 
-        <!-- <a routerLink='/request/edit/{{request.id}}' class='btn btn-primary' title='Edit' style='margin-right: 5px'>Edit</a>
-        <button (click)="remove()" class='btn btn-danger' title='Delete'>Remove</button>
-         -->
-         <button routerLink='/request/list'  (click)="remove()" class='btn btn-danger' title='Delete'>Remove</button>
+        <a routerLink='/request/edit/{{request.id}}' class='btn btn-primary' title='Edit' style='margin-right: 5px'>Edit</a>
+        <button (click)="remove()" class='btn btn-danger' title='Delete'>Remove</button>        
+        
        </td>
     </tr>
   </table>
 </div>
+
+
+<!-- <div>
+    <div>
+ <tr *ngIf="!requestLine"><td>Please Enter a request below</td></tr>
+    </div>
+  </div> -->
+      <!-- <button routerLink='/request/list'  (click)="remove()" class='btn btn-danger' title='Delete'>Remove</button> -->
