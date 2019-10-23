@@ -17,7 +17,6 @@ import { ProductCreateComponent } from './feature/product/product-create/product
 import { ProductDetailComponent } from './feature/product/product-detail/product-detail.component';
 import { ProductEditComponent } from './feature/product/product-edit/product-edit.component';
 
-
 import { RequestListComponent } from './feature/request/request-list/request-list.component';
 import { RequestCreateComponent } from './feature/request/request-create/request-create.component';
 import { RequestDetailComponent } from './feature/request/request-detail/request-detail.component';
@@ -31,10 +30,9 @@ import { RequestLineItemCreateComponent } from './feature/requestLineItems/reque
 import { RequestLineItemEditComponent } from './feature/requestLineItems/requestLineItem-edit/requestLineItem-edit.component';
 
 
-
 const routes: Routes = [
-  { path: '', redirectTo: '/user/login', pathMatch: 'full'},
-
+  // { path: '', redirectTo: '/user/login', pathMatch: 'full'},
+  { path: '', redirectTo: 'http://localhost:4200/user/login', pathMatch: 'full'},
   { path: 'user/list', component: UserListComponent},
   { path: 'user/create', component: UserCreateComponent},
   { path: 'user/detail/:id', component: UserDetailComponent},  // this id is used in user-detail.component.ts with ngOnInit method
@@ -56,15 +54,16 @@ const routes: Routes = [
   { path: 'request/detail/:id', component: RequestDetailComponent},
   { path: 'request/edit/:id', component: RequestEditComponent},
   
-  { path: 'request/review', component: RequestListComponent},
-  { path: 'request/approve', component: RequestCreateComponent},
-  { path: 'request/lines', component: RequestListComponent},
+  { path: 'request/review', component: RequestReviewComponent},
+  { path: 'request/approve/:id', component: RequestApproveComponent},
+  
+
+  { path: 'requestline/:id', component: RequestLinesComponent},
 
   { path: 'requestLineItems/edit/:id', component: RequestDetailComponent},
-  { path: 'requestLineItems/create/:id', component: RequestEditComponent}
-  
+  { path: 'requestLineItems/create/:id', component: RequestEditComponent},
+  { path: 'requestLineItems/delete/:id', component: RequestLineItemEditComponent}
    ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

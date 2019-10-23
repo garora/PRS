@@ -1,3 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-fixed-top navbar-dark bg-dark">
+  <a routerLink="/home" class="navbar-brand"><img class='img-responsive' src="../../../assets/PRS-Logo-2-Resized.png"
+      alt=""></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" *ngFor="let mi of menuItems" title="{{mi.tooltip}}"> -->       
+        <a class="nav-link" routerLink="{{mi.href}}">{{mi.display}}</a>
+        <!-- <a *ngIf='!loggedInUuser' class="nav-link disabled">{{mi.display}}</a> -->
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<!-- <a *ngIf='user' class="nav-link" routerLink="{{mi.href}}">{{mi.display}}</a>
+<a *ngIf='userLoggedIn' class="nav-link disabled">{{mi.display}}</a> -->
+
+
 <!-- <nav *ngIf="loggedInUser" class="container-fluid">
   <div class="row px-2">
     <div class="col">
@@ -16,22 +38,7 @@
 </nav> -->
 
 
-<nav class="navbar navbar-expand-lg navbar-fixed-top navbar-dark bg-dark">
-  <a routerLink="/home" class="navbar-brand"><img class='img-responsive' src="../../../assets/PRS-Logo-2-Resized.png"
-      alt=""></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item" *ngFor="let mi of menuItems" title="{{mi.tooltip}}"> -->
-        <a *ngIf='user' class="nav-link" routerLink="{{mi.href}}">{{mi.display}}</a>
-        <a *ngIf='userLoggedIn' class="nav-link disabled">{{mi.display}}</a>
-        <a class="nav-link" routerLink="{{mi.href}}">{{mi.display}}</a>
-        <a *ngIf='!loggedInUuser' class="nav-link disabled">{{mi.display}}</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+
+
+
 

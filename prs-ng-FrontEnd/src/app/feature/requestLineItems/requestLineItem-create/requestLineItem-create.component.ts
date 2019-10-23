@@ -10,20 +10,20 @@ import { RequestLineItemService } from '@svc/requestLineItem.service';
 
 
 @Component( {
-  selector: 'app-request-create',
+  selector: 'app-requestLineItem-create',
   templateUrl: './requestLineItem-create.component.html',
   styleUrls: [ './requestLineItem-create.component.css' ]
 } )
 export class RequestLineItemCreateComponent implements OnInit
-{
-  reqLineItem: RequestLineItems = new RequestLineItems();
+{ 
   title: 'Create Request Line Item';
-  productid: Products[ "id" ];
+  productId: Products[ "id" ];
   product: Products;
   products: Products[];
-  requestId: number;
+  reqId: number;
   request: Requests;
   resp: any;
+  reqlineItem: RequestLineItems = new RequestLineItems();
 
   constructor ( private requestSvc: RequestService,
     private reqLineItemSvc: RequestLineItemService,
@@ -38,10 +38,10 @@ export class RequestLineItemCreateComponent implements OnInit
   {
     this.route.params.subscribe( parms =>
     {
-      this.requestId = parms[ "id" ];
-      this.requestSvc.get( this.requestId ).subscribe( requests =>
+      this.reqId = parms[ "Id" ];
+      this.requestSvc.get( this.reqId ).subscribe( requests =>
       {
-        this.request = Request.length > 0 ? requests[ 0 ] : null;
+        this.request = Requests.length > 0 ? requests[ 0 ] : null;
       } );
     } );
     this.productSvc.list().subscribe( products =>
@@ -56,18 +56,20 @@ export class RequestLineItemCreateComponent implements OnInit
     return u1 && u2 ? u1.id == u2.id : u1 == u2;
   }
 
-  create ()
-  {
-    this.reqLineItem.requestId = this.requestId;
-    this.reqLineItem.requestId = this.product.id;
-    this.reqLineItemSvc.create( this.reqLineItem ).subscribe( resp =>
-    {
-      console.log( 'Request Line Item Added' );
-      this.resp = resp;
-      this.router.navigateByUrl( '/requests/list' );
-    } );
-  }
+  // create ()
+  // {
+  //   this.reqlineItem.requestId = this.reqId;
+  //   this.reqlineItem.productId = this.product.id;
+  //   this.reqLineItemSvc.create(this.reqlineItem).subscribe(resp =>
+  //   {
+  //     console.log( 'Request Line Item Added' );
+  //     this.resp = resp;
+  //     this.router.navigateByUrl( '/request/list' );
+  //   } );
+  // }
 }
+
+
 
 // ngOnInit() {
   //     if(this.systemSvc.data.user.loggedIn) {

@@ -1,4 +1,3 @@
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule} from '@angular/common/http';
@@ -41,6 +40,7 @@ import { RequestReviewComponent } from './feature/request/request-review/request
 import { RequestLineItemCreateComponent } from './feature/requestLineItems/requestLineItem-create/requestLineItem-create.component';
 import { RequestLineItemEditComponent } from './feature/requestLineItems/requestLineItem-edit/requestLineItem-edit.component';
 import { RequestLineItemService } from './service/requestLineItem.service';
+
 
 @NgModule({
   declarations: [
@@ -87,7 +87,9 @@ import { RequestLineItemService } from './service/requestLineItem.service';
     ProductService,
     RequestService,
     SystemService,
-    RequestLineItemService 
+    RequestLineItemEditComponent,
+    RequestLineItemService,
+    HttpClientModule
     ],
 
   bootstrap: [AppComponent]

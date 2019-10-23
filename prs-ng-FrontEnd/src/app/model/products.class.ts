@@ -19,8 +19,8 @@ export class Products {
     vendorId: number = 0, vendor: Vendors = new Vendors() ){
 
         this.id=id;
-        this.partNbr = partNbr;
-        this.name = name;
+        this.partNbr=partNbr;
+        this.name=name;
         this.price=price;
         this.unit=unit;
         this.photoPath=photoPath;

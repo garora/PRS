@@ -3,23 +3,27 @@ import { Products } from './products.class';
 
 
 
-export class RequestLineItems {
+export class RequestLineItems
+{
     id: number;
     requestId: number;
     productId: number;
     quantity: number;
-    products: Products;
-    requests: Requests;
+    product: Products;
+    request: Requests;
 
-    constructor() {
+    constructor ()
+    {
 
-    this.id = 0;
-    this.requestId = 0;
-    this.productId = 0;
-    this.quantity = 1;
+        this.id = 0;
+        this.requestId = 0;
+        this.productId = 0;
+        this.quantity = 0;   // this.quantity = 1;
+
     }
 
-    about(): string  {
+    about (): string
+    {
         return 'Request: id' + this.id + ', requestId=' + this.requestId + ', productId=' + this.productId + ', quantity=' + this.quantity;
 
     }
