@@ -1,0 +1,77 @@
+<div id='component'>
+    <div id='pagetitle'>
+        <!-- add styling -->
+      <span>[{{title}}]</span>
+    </div>
+    <p *ngIf='!user'>Loading...</p>
+    <div *ngIf='user'>
+  ​
+  <div class="form-group row">
+    <label class='col-form-label col-sm-2' for="RequestLineItemId">Line Item Id:</label>
+     <input [(ngModel)]='requestlineItem.id' name='RequestLlineItem' type="text" class="form-control col-sm-6" id="requestLineItemId"
+      aria-describedby="lineIdHelp" placeholder="RequestLlineItem" aria-readonly="true">
+     <small id="lineIdHelp" class="form-text text-muted col-sm-2">Line Item's Id</small>
+   </div>
+
+   <div class="form-group row">
+     <label class='col-form-label col-sm-2' for="requestlineitemprequestid">Request Id:</label>
+     <input [(ngModel)]='requestlineItem.request.id' name='RequestLineItemRequestId' type="text" class="form-control col-sm-6" id="requestLineItemRequestId"
+       aria-describedby="reqIdHelp" placeholder="RequestLineItemRequestId" aria-readonly="true">
+     <small id="reqIdHelp" class="form-text text-muted col-sm-2">Request's Id</small>
+   </div>
+
+   <div class="form-group row">
+     <label class='col-form-label col-sm-2' for="requestlineitemproductid">Id:</label>
+     <input [(ngModel)]='requestlineItem.product.id' name='RequestLineItemProductId"' type="text" class="form-control col-sm-6" id="requestLineItemProductId""
+       aria-describedby="prodIdHelp" placeholder="RequestLineItemProductId">
+     <small id="prodIdHelp" class="form-text text-muted col-sm-2">Product's Id</small>
+   </div>
+
+   <div class="form-group row">
+     <label class='col-form-label col-sm-2' for="requestlineItemquantity">Quantity:</label>
+     <input [(ngModel)]='requestlineItem.quantity' name='Quantity' type="text" class="form-control col-sm-6" id="quantity"
+       aria-describedby="QuantityHelp" placeholder="Quantity">
+     <small id="QuantityHelp" class="form-text text-muted col-sm-2">Item's Quantity:</small>
+   </div>
+  
+      <div class="form-group row">
+        <label class='col-form-label col-sm-2' for="phone">Phone Number:</label>
+        <input [(ngModel)]='user.phone' name='PhoneNumber' type="text" class="form-control col-sm-6" id="phone"
+          aria-describedby="phoneHelp" placeholder="PhoneNumber">
+        <small id="phoneHelp" class="form-text text-muted col-sm-2">User's Phone Number</small>
+      </div>  
+  
+      <div class='form-group'>
+        <button (click)='edit();' class='btn btn-primary'>Save Changes</button>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <!-- <div class='component-content'>
+      <div>
+        <span class='component-title'>{{title}}</span> 
+         <!-- <span><a routerLink='/requestline/{{requestlines.id}}'>Back to list</a></span> -->
+      <!-- </div>
+     
+    
+      <div class='form-group row'>
+        <label class='col-form-label col-sm-2' for="requestlinequantity">Product:</label>
+        <input readonly type="text" class="form-control col-sm-6" id="requestlineq" aria-describedby="emailHelp"value="{{this.requestline.product.name}}">
+      </div>
+    
+    <div class='form-group row'>
+          <label class='col-form-label col-sm-2' for="requestlinequantity">Quantity:</label>
+          <input [(ngModel)]='requestline.quantity' name='Quantity' type="number" class="form-control col-sm-6" id="requestlineq" aria-describedby="emailHelp" placeholder="Quantity">
+        </div>
+    
+        
+          <div class='form-group'>
+          <button (click)='edit()' class='btn btn-primary'>Edit</button>
+    
+        </div>
+      </div> -->
+    
+  
+   -->

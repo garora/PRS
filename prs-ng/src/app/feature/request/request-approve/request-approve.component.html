@@ -1,0 +1,102 @@
+<div class='component-content'>
+    <div>
+      <span class='component-title'>{{title}}</span>
+      <span><a routerLink='/request/review'>   Back to list</a></span> 
+    </div>
+  
+  <table class='table table-sm'>
+          <tr>
+              <th>ID:</th>
+              <th>Description:</th>
+              <th>Status:</th>
+              <th>Total:</th>
+          </tr>
+          <tr>
+              <td>{{request.id}}</td>
+              <td>{{request.description}}</td>
+              <td>{{request.status}}</td>
+              <td>{{request.total | currency}}</td>
+          </tr>
+  </table>  
+  <table>
+        <tr>
+          <th>ID:</th>
+          <th>Request ID:</th>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Line Total</th>
+        </tr>           
+    <tr *ngFor='let requestlineItem of requestlineItems'>
+        <td *ngIf='requestlineItems.request.id == requests.id'>{{requestlineItems.id}}</td>
+        <td *ngIf='requestlineItems.request && requestlineItems.request.id == request.id'>{{requestlineItems.request.id}}</td>
+        <td *ngIf='requestlineItems.product && requestlineItems.request.id == request.id'>{{requestlineItems.product.name}}</td>
+        <td *ngIf='requestlineItems.quantity && requestlineItems.request.id == request.id'>{{requestlineItems.quantity}}</td>
+        <td *ngIf='requestlineItems.product && requestlineItems.request.id == request.id'>{{requestlineItems.product.price | currency}}</td>
+        <td *ngIf='requestlineItems.product && requestlineItems.request.id == request.id'>{{requestlineItems.product.price * requestlineItems.quantity | currency}}</td>   
+      </tr>
+  </table> 
+  
+      <div>
+   <br> <button (click)='Approve()' class='btn btn-primary'>Approve</button><br><br>
+        <p>Rejection reason required.</p>
+        <label class='col-form-label col-sm-2' for="description">Rejection Reason:</label>
+      <input name='rejectionreason' type="text" class="form-control col-sm-6" 
+        id="rejectionreason" aria-describedby="rejectionreasonHelp" placeholder="Rejection reason">  
+      <br>
+     
+        <button (click)="Reject()" class="btn btn-primary">Reject</button>
+      </div>
+  
+    </div>
+  
+  
+    <!-- <div class='component-content'>
+  <div class='left-half'>
+    <span class='component-title'>[{{title1}}]</span>
+    <a routerLink='/request/review/' title = 'Back to Request List'>Back to List</a>
+  </div>
+</div>
+<p *ngIf='!request'> Loading ... </p>
+<table class='table table-sm'>                      <!-- <table class="table table-sm" *ngIf='request'> -->
+  <!-- <tr>
+    <th><a class="btn btn-link font-weight-bold"><u>ID: </u></a> </th>
+    <th><a class="btn btn-link font-weight-bold"><u>Description: </u></a> </th>
+    <th> <a class="btn btn-link font-weight-bold"><u>Status: </u></a> </th>
+    <th><a class="btn btn-link font-weight-bold"><u>Total: </u></a> </th>
+  </tr>
+  <tr>
+    <td> {{ request.id }} </td>
+    <td> {{ request.description }}</td>
+    <td> {{ request.status }} </td>
+    <td> {{ request.total |currency }} </td>
+  </tr>
+</table>
+
+<div class='component-content'>
+  <div class='left-half'>
+    <span class='component-title'>[{{title2}}]</span>
+  </div>
+</div>
+<p *ngIf='requestLine'> "Loading..." </p>
+<table class="table table-sm" *ngIf='requestLine'>
+  <tr>
+    <th><a class="btn btn-link font-weight-bold"><u>ID: </u></a> </th>
+    <th><a class="btn btn-link font-weight-bold"><u>Product: </u></a> </th>
+    <th> <a class="btn btn-link font-weight-bold"><u>Quantity: </u></a> </th>
+    <th><a class="btn btn-link font-weight-bold"><u>Price: </u></a> </th>
+    <th><a class="btn btn-link font-weight-bold"><u>Line Total: </u></a> </th>
+  </tr>
+  <tr *ngFor='let reqli of request.requestLine'>
+    <td> {{requestLine.id}} </td>
+    <td> {{ requestLine.product.name }} </td>
+    <td> {{ requestLine.quantity}} </td>
+    <td> {{ requestLine.product.price }} </td>
+    <td> {{ requestLine.quantity * requestLine.product.price |currency }}</td>
+  </tr>
+  </table> -->
+<!-- approve or deny requests -->
+  <!-- <input [(ngModel)] = 'request.reasonForRejection' placeholder="Reason for Rejection" name='Rejection' type='text'>
+  <button *ngIf = '!request.reasonForRejection' (click)='approve()' class='btn btn-success'>Approve</button>
+  <button *ngIf = 'request.reasonForRejection'type='submit' (click)='reject()' class='btn btn-danger'>Reject</button>
+ --> -->

@@ -1,0 +1,69 @@
+<div class='component-content'>
+  <div class='lefthalf'>
+    <span class='component-title'>[{{title}}] </span>
+    <!-- <span><a *ngIf='loggedInUser.admin' routerLink='/request/create'> -->
+        <span><a routerLink='/request/create'>
+        <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
+<p *ngIf='!requests'>Loading ...</p>
+<table class="table table-sm" *ngIf='requests'>
+  <tr>
+    <th></th>
+    <th class='table-secondary'></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('id')"><u>Id</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('userName')"><u>User Name</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('description')"><u>Description</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('justification')"><u>Justification</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('deliveryMode')"><u>Delivery Mode</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('status')"><u>Status</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('total')"><u>Total</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ><u>Rejection Reason</u></a></th>
+    <th class="table-secondary btn-link"><a class='btn btn-link font-weight-bold'>Action</a></th>
+  </tr>
+<div>
+    <div>
+       <tr *ngFor='let request of requests | sort:sortCriteria:sortOrder'>
+        <td></td>
+        <td>{{request.id}}</td>
+        <td>{{request.user.username}}</td>
+        <td>{{request.Description}}</td>
+        <td> {{ request.deliveryMode }} </td>
+        <td>{{request.total | currency}}</td>
+        <td>{{request.status}}</td>
+        <td>{{request.isReviewer?"Reviewer":""}} {{request.admin?"admin":""}}</td>
+        <td class='actions'>
+            <!-- can remove 'btn-link' to manipulat color scheme -->
+           <a routerLink='/request/detail/{{request.id}}' style='padding-left: 16px' class='actionIcon'><img src='assets/details.png' width='20' height='20' title='Detail'></a>
+           <div>
+             <div>
+             </div>
+           </div>
+           <a routerLink='/request/edit/{{request.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a></td>
+           <a routerLink='/request/lines/{{request.id}}'><img src='assets/lines.png' width='20' height='20' title='Lines'></a>
+            <!-- <a *ngIf='loggedInUser.admin' routerLink='/request/edit/{{request.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a> -->
+      </tr>
+  </div>
+</div>
+  <tr></tr>
+  <tr></tr>
+  <tr></tr>
+  <tr>
+     <td>
+        <tr> <div>
+            <div>
+              <tr *ngIf="!request.requestLines.id"><td>No current requests. To start your request, please click the 'lines' button.</td></tr>
+            </div>
+          </div></tr>
+     </td>
+  </tr>
+  <tr></tr>
+  <tr></tr>
+  <tr></tr>
+</table>
+<div>
+ </div>
+
+
+
+
+
+

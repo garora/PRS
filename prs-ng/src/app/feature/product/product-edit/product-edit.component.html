@@ -1,0 +1,63 @@
+<div class='component-content'>
+  <div>
+    <span class='component-title'>[{{title}}]</span>
+  </div>
+  <p *ngIf='!product'>Loading...</p>
+  <!-- <p *ngIf='loggedInUser.isAdmin !== true'>This action requires administrative authority. </p>
+  <div *ngIf='loggedInUser.isAdmin == true'> -->
+  <div *ngIf='product'></div>
+  <!-- <div *ngIf='product&&product.vendor'> -->
+    <hr />
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="vendor">Vendor:</label>
+      <div class='col-sm-6 select-list'>
+        <select [(ngModel)]='product.vendor.id' [compareWith]='compareFn' class='form-control' name='Vendor'
+          id='product-Vendor'>
+          <option *ngFor="let vendor of vendorsList" [ngValue]="vendor.id" [selected]="vendor.id == product.vendor.id">
+            {{vendor.name}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <hr />
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="partnumber">Part Number:</label>
+      <input [(ngModel)]='product.partNbr' name='PartNumber' type="text" class="form-control col-sm-6" id="partnumber"
+        aria-describedby="pnumberHelp" placeholder="PartNumber">
+      <small id="pnumberHelp" class="form-text text-muted col-sm-2">Product's Part Number</small>
+    </div>
+    <hr />
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="productname">Product's Name:</label>
+      <input [(ngModel)]='product.name' name='Product'sName' type="text" class="form-control col-sm-6" id="productname"
+        aria-describedby="pnameHelp" placeholder="Product'sName">
+      <small id="pnameHelp" class="form-text text-muted col-sm-2">Product's Name</small>
+    </div>
+    <hr />
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="price">Price:</label>
+      <input [(ngModel)]='product.price' name='Price' type="text" class="form-control col-sm-6" id="price"
+        aria-describedby="priceHelp" placeholder="Price">
+      <small id="priceHelp" class="form-text text-muted col-sm-2">Product's Price</small>
+    </div>
+    <hr />
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="unit">Unit:</label>
+      <input [(ngModel)]='product.unit' name='Unit' type="text" class="form-control col-sm-6" id="unit"
+        aria-describedby="unitHelp" placeholder="Unit">
+      <small id="unitHelp" class="form-text text-muted col-sm-2">Product's Unit</small>
+    </div>
+    <hr />
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="photopath">Photopath:</label>
+      <input [(ngModel)]='product.photoPath' name='Photopath' type="text" class="form-control col-sm-6" id="photopath"
+        aria-describedby="ppathHelp" placeholder="Photopath">
+      <small id="ppathHelp" class="form-text text-muted col-sm-2">Product's Photopath</small>
+    </div>
+    <hr />
+    <div class='form-group'>
+      <button (click)='edit()' class='btn btn-primary'>Update</button>
+    </div>
+ 
+</div>
+<!-- //calls edit method in .ts -->
