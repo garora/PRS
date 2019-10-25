@@ -13,48 +13,64 @@ namespace PRS.Controllers
     [ApiController]
     public class RequestControllerAPI : ControllerBase
     {
-        private readonly MyDb _context;
+        #region Public Constructors
+
+        #region Public Constructors
+
+        #region Public Constructors
+
+        #region Public Constructors
+
         public RequestControllerAPI(MyDb context)
         {
             _context = context;
         }
 
+        #endregion Public Constructors
+
+        #endregion Public Constructors
+
+        #endregion Public Constructors
+
+        #endregion Public Constructors
+
+        #region Public Methods
+
+        #region Public Methods
+
+        #region Public Methods
+
+        #region Public Methods
+
+        // DELETE: api/RequestControllerAPI/5
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Requests>> DeleteRequests(int id)
+        {
+            var requests = await _context.Requests.FindAsync(id);
+            if (requests == null)
+            {
+                return NotFound();
+            }
+
+            _context.Requests.Remove(requests);
+            await _context.SaveChangesAsync();
+
+            return requests;
+        }
+
         // GET: api/RequestControllerAPI
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Requests>>> GetRequests()
-            {
-                 return await _context.Requests.ToListAsync();
-            }
-              
-        // GET: api/GetRequestsForReview
-        [Route("/api/GetRequestsForReview")]     // add slash to beginning because it is absolute route to method
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Requests>>> GetRequestsForReview()
-            {
-            
-                var items = from r in _context.Requests                                             // another option: query syntax
-                            where r.Status == "Review" 
-                            select r;
-                return await items.ToListAsync();
+        {
+            return await _context.Requests.ToListAsync();
         }
-
-        //return await _context       //the database           // this option is called lynq
-        //    .Requests               // the entity
-        //    .Where(r => r.Status == "Review")       // filter for requests in review status
-        //    .ToListAsync();             //return async collection      
-
-
-
-
-
-
 
         // GET: api/RequestControllerAPI/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Requests>> GetRequests(int id)
         {
-           var requests = await _context.Requests.FindAsync(id);
-           
+            var requests = await _context.Requests.FindAsync(id);
+
             if (requests == null)
             {
                 return NotFound();
@@ -63,68 +79,28 @@ namespace PRS.Controllers
             return requests;
         }
 
-
-        // Status-Review
-        // GET: api/SetStatusReview/5       /// Request that we are going to update status  // 090619p1.0140
-        //  method route is appended to -- route unless we place slash in front of
-
-        [Route("/api/SetStatusReview/{id}")]
+        // GET: api/GetRequestsForReview
+        [Route("/api/RequestReview")]     // add slash to beginning because it is absolute route to method
         [HttpGet]
-        public async Task<ActionResult<Requests>> SetStatusReview(int id)
+        public async Task<ActionResult<IEnumerable<Requests>>> GetRequestsForReview()
         {
-            var requests = await _context.Requests.FindAsync(id);
 
-            if (requests == null)
-            {
-                return NotFound();                  // returns 404 (error code)
-            }
-
-            requests.Status = "Review";             // will use button (Ajax) to call this
-            await _context.SaveChangesAsync();         // change save is done in context // returns true or false 
-
-            return Ok();    // returns code 200 (success code)
+            var items = from r in _context.Requests                                             // another option: query syntax
+                        where r.Status == "Review"
+                        //where r.UserId != id
+                        select r;
+            return await items.ToListAsync();
         }
 
-
-        // GET: api/SetStatusApproved/5
-
-        [Route("/api/SetStatusApproved/{id}")]          // Status-Approved
-        [HttpGet]
-        public async Task<ActionResult<Requests>> SetStatusApproved(int id)
+        // POST: api/RequestControllerAPI
+        [HttpPost]
+        public async Task<ActionResult<Requests>> PostRequests(Requests requests)
         {
-            var requests = await _context.Requests.FindAsync(id);
+            _context.Requests.Add(requests);
+            await _context.SaveChangesAsync();
 
-            if (requests == null)
-            {
-                return NotFound();                  // returns 404 (error code)
-            }
-
-            requests.Status = "Approved";             // will use button (Ajax) to call this
-            await _context.SaveChangesAsync();         // change save is done in context // returns true or false 
-
-            return Ok();    // returns code 200 (success code)
+            return CreatedAtAction("GetRequests", new { id = requests.Id }, requests);
         }
-
-
-        // GET: api/SetStatusRejected/5
-
-        [Route("/api/SetStatusRejected/{id}")]          // Status-Rejected
-        [HttpGet]
-        public async Task<ActionResult<Requests>> SetStatusRejected(int id)
-        {
-            var requests = await _context.Requests.FindAsync(id);
-
-            if (requests == null)
-            {
-                return NotFound();                  // returns 404 (error code)
-            }
-
-            requests.Status = "Rejected";             // will use button (Ajax) to call this
-            await _context.SaveChangesAsync();         // change save is done in context // returns true or false 
-
-            return Ok();    // returns code 200 (success code)
-        }
-
 
         // PUT: api/RequestControllerAPI/5
         [HttpPut("{id}")]
@@ -156,45 +132,112 @@ namespace PRS.Controllers
             return NoContent();
         }
 
-        // POST: api/RequestControllerAPI
-        [HttpPost]
-        public async Task<ActionResult<Requests>> PostRequests(Requests requests)
-        {
-            _context.Requests.Add(requests);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetRequests", new { id = requests.Id }, requests);
-        }
-
-        // DELETE: api/RequestControllerAPI/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Requests>> DeleteRequests(int id)
+        [Route("/api/SetStatusApproved/{id}")]          // Status-Approved
+        [HttpGet]
+        public async Task<ActionResult<Requests>> SetStatusApproved(int id)
         {
             var requests = await _context.Requests.FindAsync(id);
+
             if (requests == null)
             {
-                return NotFound();
+                return NotFound();                  // returns 404 (error code)
             }
 
-            _context.Requests.Remove(requests);
-            await _context.SaveChangesAsync();
+            requests.Status = "Approved";             // will use button (Ajax) to call this
+            await _context.SaveChangesAsync();         // change save is done in context // returns true or false
 
-            return requests;
+            return Ok();    // returns code 200 (success code)
         }
 
+        [Route("/api/SetStatusRejected/{id}")]          // Status-Rejected
+        [HttpGet]
+        public async Task<ActionResult<Requests>> SetStatusRejected(int id)
+        {
+            var requests = await _context.Requests.FindAsync(id);
+
+            if (requests == null)
+            {
+                return NotFound();                  // returns 404 (error code)
+            }
+
+            requests.Status = "Rejected";             // will use button (Ajax) to call this
+            await _context.SaveChangesAsync();         // change save is done in context // returns true or false
+
+            return Ok();    // returns code 200 (success code)
+        }
+
+        [Route("/api/SetStatusReview/{id}")]
+        [HttpGet]
+        public async Task<ActionResult<Requests>> SetStatusReview(int id)
+        {
+            var requests = await _context.Requests.FindAsync(id);
+
+            if (requests == null)
+            {
+                return NotFound();                  // returns 404 (error code)
+            }
+
+            requests.Status = "Review";             // will use button (Ajax) to call this
+            await _context.SaveChangesAsync();         // change save is done in context // returns true or false
+
+            return Ok();    // returns code 200 (success code)
+        }
+
+        #endregion Public Methods
+
+        #endregion Public Methods
+
+        #endregion Public Methods
+
+        #endregion Public Methods
+
+        #region Private Fields
+
+        #region Private Fields
+
+        #region Private Fields
+
+        #region Private Fields
+
+        private readonly MyDb _context;
+
+        #endregion Private Fields
+
+        #endregion Private Fields
+
+        #endregion Private Fields
+
+        #endregion Private Fields
+
+        #region Private Methods
+
+        #region Private Methods
+
+        #region Private Methods
+
+        #region Private Methods
+
+        //return await _context       //the database           // this option is called lynq
+        //    .Requests               // the entity
+        //    .Where(r => r.Status == "Review")       // filter for requests in review status
+        //    .ToListAsync();             //return async collection
+        // Status-Review
+        // GET: api/SetStatusReview/5       /// Request that we are going to update status  // 090619p1.0140
+        //  method route is appended to -- route unless we place slash in front of
+        // GET: api/SetStatusApproved/5
+        // GET: api/SetStatusRejected/5
         private bool RequestsExists(int id)
         {
             return _context.Requests.Any(e => e.Id == id);
         }
 
+        #endregion Private Methods
 
+        #endregion Private Methods
 
+        #endregion Private Methods
 
-
-
-       
-
-       
+        #endregion Private Methods
 
     }
 }
