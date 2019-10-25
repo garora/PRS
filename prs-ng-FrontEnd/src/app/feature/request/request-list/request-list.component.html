@@ -4,6 +4,9 @@
     <!-- <span><a *ngIf='loggedInUser.admin' routerLink='/request/create'> -->
         <span><a routerLink='/request/create'>
         <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'>
+      </span>
+    </div>
+  </div>
 <p *ngIf='!requests'>Loading ...</p>
 <table class="table table-sm" *ngIf='requests'>
   <tr>
@@ -17,11 +20,40 @@
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('status')"><u>Status</u></a></th>
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('total')"><u>Total</u></a></th>
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ><u>Rejection Reason</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('user')"><u>Is Administrator</u></a></th>
     <th class="table-secondary btn-link"><a class='btn btn-link font-weight-bold'>Action</a></th>
   </tr>
 <div>
-    <div>
-       <tr *ngFor='let request of requests | sort:sortCriteria:sortOrder'>
+  <div>       
+   </tr> 
+<tr *ngFor='let request of requests | sort:sortCriteria:sortOrder'>
+   <td></td>
+    <td *ngIf='request.status != "REVIEW"'>{{request.id}}</td>
+    <td *ngIf='request.status != "REVIEW"'>{{request.userName}}</td>
+    <td *ngIf='request.status != "REVIEW"'>{{request.description}}</td>
+    <td *ngIf='request.status != "REVIEW"'>{{request.justification}}</td>
+    <td *ngIf='request.status != "REVIEW"'>{{request.deliveryMode}}</td>    
+    <td *ngIf='request.status != "REVIEW"'>{{request.status}}</td>
+    <td *ngIf='request.status != "REVIEW"'>{{request.total | currency}} </td>
+    <td *ngIf='request.status != "REVIEW"'>{{request.rejectionReason}}</td>
+    <td *ngIf='request.status != "REVIEW"'>{{request.isReviewer?"Reviewer":""}} {{request.admin?"admin":""}}</td>
+   
+<td *ngIf='request.status != "REVIEW"' class='actions'>         <!-- can remove 'btn-link' to manipulat color scheme -->
+  <a routerLink='/request/detail/{{request.id}}' style='padding-left: 16px' class='actionIcon'><img src='assets/details.png' width='20' height='20' title='Detail'></a>
+   <div>
+      <div>
+       <!-- <a *ngIf='loggedInUser.admin' routerLink='/request/edit/{{request.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a> -->
+     </div>
+   </div>
+      <a routerLink='/request/edit/{{request.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a></td>
+      <a routerLink='/request/lines/{{request.id}}'><img src='assets/lines.png' width='20' height='20' title='Lines'></a> -->
+     </tr>
+  </div>
+</div>
+ 
+
+
+   <!-- <tr *ngFor='let request of requests | sort:sortCriteria:sortOrder'>
         <td></td>
         <td>{{request.id}}</td>
         <td>{{request.user.username}}</td>
@@ -31,19 +63,8 @@
         <td>{{request.status}}</td>
         <td>{{request.isReviewer?"Reviewer":""}} {{request.admin?"admin":""}}</td>
         <td class='actions'>
-            <!-- can remove 'btn-link' to manipulat color scheme -->
-           <a routerLink='/request/detail/{{request.id}}' style='padding-left: 16px' class='actionIcon'><img src='assets/details.png' width='20' height='20' title='Detail'></a>
-           <div>
-             <div>
-             </div>
-           </div>
-           <a routerLink='/request/edit/{{request.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a></td>
-           <a routerLink='/request/lines/{{request.id}}'><img src='assets/lines.png' width='20' height='20' title='Lines'></a>
-            <!-- <a *ngIf='loggedInUser.admin' routerLink='/request/edit/{{request.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a> -->
-      </tr>
-  </div>
-</div>
-  <tr></tr>
+        
+           <tr></tr>
   <tr></tr>
   <tr></tr>
   <tr>
@@ -60,10 +81,4 @@
   <tr></tr>
 </table>
 <div>
- </div>
-
-
-
-
-
-
+ </div> -->

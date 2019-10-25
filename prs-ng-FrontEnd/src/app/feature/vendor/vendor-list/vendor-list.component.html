@@ -38,9 +38,10 @@
     <td>{{vendor.phone}}</td>
     <td>{{vendor.email}}</td>
     <td class='actions'>
-      <!-- <a routerLink='/vendor/detail/{{vendor.id}}' style='padding-left: 16px' class='actionIcon'><img src='assets/details.png' width='20' height='20' title='Detail'></a> -->
-      <a *ngIf='loggedInUser.isAdmin' routerLink='/vendor/edit/{{vendor.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a>
-     <!-- <a routerLink='/vendor/edit/{{vendor.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a></td> -->
+      <a routerLink='/vendor/detail/{{vendor.id}}' style='padding-left: 16px' class='actionIcon'><img src='assets/details.png' width='20' height='20' title='Detail'></a> -->
+         <a routerLink='/vendor/edit/{{vendor.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a></td>
+          <!-- <a *ngIf='loggedInUser.isAdmin' routerLink='/vendor/edit/{{vendor.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a> -->
+ 
       </tr>
 </table>
 

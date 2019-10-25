@@ -4,7 +4,7 @@
     </div>
     <span><a routerLink='/vendor/list'>Back to list</a></span>
     <p *ngIf='!vendor'>Loading...</p>
-    <p *ngIf='loggedInUser.isAdmin !== true'>You don’t have administrative authority.</p>
+    <!-- <p *ngIf='loggedInUser.isAdmin !== true'>You don’t have administrative authority.</p> -->
     <span><a routerLink='/request/list'></a></span>
     <div *ngIf='loggedInUser.isAdmin == true'> 
      

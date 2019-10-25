@@ -39,12 +39,12 @@
     </tr>
     <tr>
       <td colspan="2">
-        <a *ngIf='loggedInUser.admin || loggedInUser.userName == user.userName' routerLink='/user/edit/{{user.id}}' class='btn btn-primary' title='Edit' style='margin-right: 5px'>Edit</a>
-        
-        <!-- <a routerLink='/user/edit/{{user.id}}' class='btn btn-primary' title='Edit' style='margin-right: 5px'>Edit</a>
-        <button (click)="remove()" class='btn btn-danger' title='Delete'>Remove</button> -->
+        <!-- <a *ngIf='loggedInUser.admin || loggedInUser.userName == user.userName' routerLink='/user/edit/{{user.id}}' class='btn btn-primary' title='Edit' style='margin-right: 5px'>Edit</a> -->
+        <!-- <button *ngIf='loggedInUser.admin' (click)="remove()" class='btn btn-danger' title='Delete'>REMOVE</button> -->
+        <a routerLink='/user/edit/{{user.id}}' class='btn btn-primary' title='Edit' style='margin-right: 5px'>Edit</a>
+        <button (click)="remove()" class='btn btn-danger' title='Delete'>Remove</button>
        
-        <button *ngIf='loggedInUser.admin' (click)="remove()" class='btn btn-danger' title='Delete'>REMOVE</button>
+     
        </td>
     </tr>
   </table>

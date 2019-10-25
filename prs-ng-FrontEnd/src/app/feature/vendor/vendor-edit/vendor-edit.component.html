@@ -4,8 +4,8 @@
           <span>[{{title}}]</span>
         </div>
         <p *ngIf='!vendor'>Loading...</p>
-        <p *ngIf='loggedInUser.isAdmin !== true'>You don’t have administrative authority.</p>
-        <div *ngIf='loggedInUser.isAdmin == true'>
+        <!-- <p *ngIf='loggedInUser.isAdmin !== true'>You don’t have administrative authority.</p>
+        <div *ngIf='loggedInUser.isAdmin == true'> -->
         <div *ngIf='vendor'>      ​
           <div class="form-group row">
             <label class='col-form-label col-sm-2' for="vendorname">First name:</label>

@@ -3,8 +3,8 @@
     <span>[{{title}}]</span>
   </div>
   <p *ngIf='!user'>Loading...</p>
-  <p *ngIf='loggedInUser.isAdmin !== true'>You don’t have administrative authority.</p>
-  <div *ngIf='loggedInUser.isAdmin == true'>
+  <!-- <p *ngIf='loggedInUser.isAdmin !== true'>You don’t have administrative authority.</p>
+  <div *ngIf='loggedInUser.isAdmin == true'> -->
   <div *ngIf='user'>
     <div class="form-group row">
       <label class='col-form-label col-sm-2' for="userFirstName">First Name:</label>

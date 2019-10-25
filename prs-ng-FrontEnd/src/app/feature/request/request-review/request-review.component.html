@@ -1,8 +1,7 @@
 <div class='component-content'>
   <div class='lefthalf'>
     <span></span> class='component-title'>[{{title}}] </span>
-    <span><a *ngIf='!loggedInUser.admin' routerLink='/request/list'>  </span>    
-      <span><a *ngIf='loggedInUser.admin == request.userName' routerLink='/request/list'>  </span>  
+   
 <p *ngIf='!requests'>Loading ...</p>
 <table class="table table-sm" *ngIf='requests'>
   <tr>
@@ -15,7 +14,7 @@
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('deliveryMode')"><u>Delivery Mode</u></a></th>
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('status')"><u>Status</u></a></th>
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('total')"><u>Total</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ><u>Rejection Reason</u></a></th>
+    <!-- <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ><u>Rejection Reason</u></a></th> -->
     <th class="table-secondary btn-link"><a class='btn btn-link font-weight-bold'>Action</a></th>
   </tr>
 <div>
@@ -24,10 +23,11 @@
         <td></td>
         <td *ngIf='request.status == "REVIEW"'>{{request.id}}</td>
         <td *ngIf='request.status == "REVIEW"'>{{request.user.username}}</td>
-        <td *ngIf='request.status == "REVIEW"'>{{request.Description}}</td>
+        <td *ngIf='request.status == "REVIEW"'>{{request.description}}</td>
+        <td *ngIf='request.status == "REVIEW"'>{{request.justification}}</td>
         <td *ngIf='request.status == "REVIEW"'> {{request.deliveryMode}} </td>
-        <td *ngIf='request.status == "REVIEW"'>{{request.total | currency}}</td>
         <td *ngIf='request.status == "REVIEW"'>{{request.status}}</td>
+        <td *ngIf='request.status == "REVIEW"'>{{request.total | currency}}</td>     
         <td *ngIf='request.status == "REVIEW"'>{{request.isReviewer?"Reviewer":""}} {{request.admin?"admin":""}}</td>
         
         <div *ngIf='request.status == "REVIEW"' class='form-group'> 
@@ -53,3 +53,8 @@
 
 
 
+
+
+
+<!-- <span><a *ngIf='!loggedInUser.admin' routerLink='/request/list'>  </span>    
+  <span><a *ngIf='loggedInUser.admin == request.userName' routerLink='/request/list'>  </span>   -->
