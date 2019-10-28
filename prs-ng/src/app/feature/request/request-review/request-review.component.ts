@@ -14,14 +14,14 @@ import { RequestLineItemService } from '@svc/requestLineItem.service';
 
 export class RequestReviewComponent implements OnInit
 {
+  title = "Requests For Review";
   requests: Requests[];   // property used in component typescript file to store list of requests once the service method is called
   loggedInUser: Users;
   sortCriteria = 'Id';
   sortOrder = 'asc';
   user: Users;
-  request: Request;
-  resp: Response;
-  title = "Requests For Review";
+  request: Requests;
+  resp: Response; 
   requestlines: RequestLinesComponent;
 
 

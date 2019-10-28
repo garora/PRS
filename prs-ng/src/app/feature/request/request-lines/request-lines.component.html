@@ -14,7 +14,7 @@
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ><u>User Name</u></a></th>
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ><u>Description</u></a></th>
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ><u>Justification</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ></a><u>Delivery Mode</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ><u>Delivery Mode</u></a></th>
 
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('status')"><u>Status</u></a></th>
   
@@ -34,7 +34,7 @@
                     src='assets/details.png' width='20' height='20' title='Detail'></a>
            <!-- <a *ngIf='loggedInUser.admin' routerLink='/request/edit/{{request.id}}' class='actionIcon'><img -->
            <a routerLink='/request/edit/{{request.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20'
-                    height='20' title='Edit'></a></td>
+                    height='20' title='Edit'></a>
            <a routerLink='/request/lines/{{request.id}}'><img src='assets/lines.png' width='20' height='20' 
                     title='Lines'></a>
         </td>  
