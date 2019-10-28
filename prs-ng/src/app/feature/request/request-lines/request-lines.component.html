@@ -2,54 +2,52 @@
   <div class='lefthalf'>
     <span class='component-title'>[{{title}}] </span>
     <span><a routerLink='/request/list'>Back to list</a></span>
-    <!-- <span><a *ngIf='loggedInUser.admin' routerLink='/request/create'> -->
- 
+  <!-- <span *ngIf='loggedInUser.admin'><a routerLink='/request/create'> -->
+    <!-- <span><a routerLink='/request/create'> -->
   </div>
-</div>
+</div>  
+
 <p *ngIf='!requests'>Loading ...</p>
 <table class="table table-sm" *ngIf='requests'>
-  <tr>
-    <th></th>
-    <th class='table-secondary'></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ><u>Id</u></a></th>
+  <tr>   
+    <th class='table-secondary'></th> 
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ><u>User Name</u></a></th>
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ><u>Description</u></a></th>
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ><u>Justification</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ><u>Delivery Mode</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ></a><u>Delivery Mode</u></a></th>
+
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('status')"><u>Status</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ><u>Total</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ><u>Rejection Reason</u></a></th>
+  
     <th class="table-secondary btn-link"><a class='btn btn-link font-weight-bold'>Action</a></th>
-  </tr>
 
+  </tr>                                                           <!-- can remove 'btn-link' to manipulate color scheme -->
+       <tr>
         <td></td>
-        <td>{{request.id}}</td>
-        <td>{{request.user.username}}</td>
-        <td>{{request.Description}}</td>
-        <td> {{ request.deliveryMode }} </td>
-        <td>{{request.total | currency}}</td>
-        <td>{{request.status}}</td>
-        <td>{{request.isReviewer?"Reviewer":""}} {{request.admin?"admin":""}}</td>
-        <td class='actions'>
-            <!-- can remove 'btn-link' to manipulat color scheme -->
-           <a routerLink='/request/detail/{{request.id}}' style='padding-left: 16px' class='actionIcon'><img src='assets/details.png' width='20' height='20' title='Detail'></a>
-              <!-- <a *ngIf='loggedInUser.admin' routerLink='/request/edit/{{request.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a> -->
-           <a routerLink='/request/edit/{{request.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a></td>
-           <a routerLink='/request/lines/{{request.id}}'><img src='assets/lines.png' width='20' height='20' title='Lines'></a>
-         
+        <td {{request.user.username}}></td>
+        <td {{request.description}}></td>
+        <td {{request.justification}}></td>
+        <td {{request.deliveryMode}}></td>
+        <td {{request.status}}></td>
       
-    </table>
+        <td class='actions'>
+           <a routerLink='/request/detail/{{request.id}}' style='padding-left: 16px' class='actionIcon'><img 
+                    src='assets/details.png' width='20' height='20' title='Detail'></a>
+           <!-- <a *ngIf='loggedInUser.admin' routerLink='/request/edit/{{request.id}}' class='actionIcon'><img -->
+           <a routerLink='/request/edit/{{request.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20'
+                    height='20' title='Edit'></a></td>
+           <a routerLink='/request/lines/{{request.id}}'><img src='assets/lines.png' width='20' height='20' 
+                    title='Lines'></a>
+        </td>  
+       </tr>
+</table>
+<div class='lefthalf'>
+    <span class='component-title'>[Request Lines] </span>
+    <span><a routerLink='/request-lines/create/{{request.id}}'>
+        <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
+    </span>
+    <!-- <span *ngIf='loggedInUser.admin'><a routerLink='/request/create'> -->
 
-    <p *ngIf="!lines || lines.length == 0">No line items yet. Please create one.</p>
-    <div class='lefthalf'>
-        <span class='component-title'>[Request Lines] </span>
-        <span><a routerLink='/request-lines/create/{{request.id}}'>
-            <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
-        </span>
-        <!-- <span *ngIf='loggedInUser.admin'><a routerLink='/request/create'> -->
-    
-    </div>
-
+</div>
 <table class="table table-sm" *ngIf='requestLines'>
         <tr>
             <th class='table-secondary'></th>
@@ -77,25 +75,18 @@
                 
             </td>
         </tr>
-</table>
-       <div>
-           <a class='hibar' routerLink='/request-lines/create/{{request.id}}'>Create a New Product Request </a>
-       </div>
-                
-         <a style="float:right" *ngIf='request.status!="Review"'  (click)="review()" class='btn btn-primary' title='Submit' style='margin-right: 5px; color:white'>Submit for Review</a>
-                     
-                
-       
-    
+</table>         
+
+<div>
+    <a class='hibar' routerLink='/request-lines/create/{{request.id}}'>Create a New Product Request </a>
+</div>
+         
+  <a style="float:right" *ngIf='request.status!="Review"'  (click)="review()" class='btn btn-primary' title='Submit' style='margin-right: 5px; color:white'>Submit for Review</a>
 
 
 
 
 
-<!-- 
-  
-              <tr *ngIf="!request.requestLines.id"><td>No current requests. To start your request, please click the 'lines' button.</td></tr> -->
-          
 
 
 
