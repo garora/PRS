@@ -15,7 +15,7 @@ import { SystemService } from '@svc/system.service';
 
 export class RequestApproveComponent implements OnInit
 {
-  title: string = 'Request: Approve';
+  title: string = 'Approve Requests';
   id: number;
   request: Requests;
   resp: any;

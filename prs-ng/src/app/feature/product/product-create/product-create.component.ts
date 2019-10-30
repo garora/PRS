@@ -14,7 +14,7 @@ import { SystemService } from '@svc/system.service';
 } )
 export class ProductCreateComponent implements OnInit
 {
-  title = 'Product Create';
+  title = 'Create Product';
   product: Products = new Products();
   vendorList: Vendors[];
   loggedInUser: Users;

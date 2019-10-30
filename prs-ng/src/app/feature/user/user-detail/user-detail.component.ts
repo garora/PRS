@@ -11,7 +11,7 @@ import { Users } from '../../../model/users.class';
 })
 export class UserDetailComponent implements OnInit {
   user: Users = new Users();
-  title: string = 'User-Detail';
+  title: string = 'User Detail';
   // NEED TO INJECT THE SERVICE    // ADD ROUTER ?? (WE WILL PROB USE) 
   //(Framework takes care of HTTP REQUEST / TCPIP PROTOCOL)
   constructor(private userSvc: UserService,

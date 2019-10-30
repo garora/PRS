@@ -18,7 +18,7 @@ export class RequestLineItems
         this.id = 0;
         this.requestId = 0;
         this.productId = 0;
-        this.quantity = 0;   // this.quantity = 1;
+        this.quantity = 1;
 
     }
 

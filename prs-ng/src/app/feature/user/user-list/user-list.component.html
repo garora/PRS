@@ -1,17 +1,90 @@
+<!-- <app-menu></app-menu>     NAV bar -->
 <div class='component-content'>
+    <div class='lefthalf'>
+        <span class='component-title'><strong>{{title}}&nbsp; </strong></span>
+      <!-- <span><a *ngIf='loggedInUser.admin' routerLink='/user/create'> -->
+          <span><a routerLink='/user/create'>
+          <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'>
+      </a>
+      </span>
+    </div>
+  </div>
+  <p *ngIf='!users'>Loading ...</p>
+  <table class="table table-sm" *ngIf='users'>
+    <tr>
+      <th class='table-secondary'></th>
+      <!-- can remove 'btn-link' to manipulat color scheme -->
+      <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"  
+          (click)="sortBy('username')"><u>User Name</u></a></th>     
+      <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
+          (click)="sortBy('lastname')"><u>Name</u></a></th>
+      <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
+          (click)="sortBy('phone')"><u>Phone</u></a></th>
+      <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
+          (click)="sortBy('email')"><u>Email</u></a></th>
+      <th class="table-secondary btn-link"><a class='btn btn-link font-weight-bold'>Privilege</a></th>
+      <th class="table-secondary btn-link"><a class='btn btn-link font-weight-bold'>Action</a></th>
+    </tr>
+    <tr *ngFor='let user of users | sort:sortCriteria:sortOrder'>
+      <td></td>
+      <td>&nbsp;&nbsp;&nbsp;{{user.username}}</td>
+      <td>&nbsp;&nbsp;&nbsp;{{user.lastname}}, {{user.firstname}}</td>
+      <td>&nbsp;&nbsp;&nbsp;{{user.phone}}</td>
+      <td>&nbsp;&nbsp;&nbsp;{{user.email}}</td>
+      <td>&nbsp;&nbsp;&nbsp;{{user.isReviewer?"Review":""}} {{user.admin?"Admin":""}}</td>
+      <td class='actions'>
+        <a routerLink='/user/detail/{{user.id}}' style='padding-left: 16px' class='actionIcon'>&nbsp;<img src='assets/details.png' width='20' height='20' title='Detail'></a>
+        <!-- <a *ngIf='loggedInUser.admin' routerLink='/user/edit/{{user.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a> -->
+       <a routerLink='/user/edit/{{user.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a></td> 
+        </tr>
+  </table>
+  
+  
+  
+  
+  <!-- <table class="table" *ngIf='users'>  
+      // make sure user list loads before displaying and clickable 
+      <thead class="thead-dark">
+      <tr>
+           <th>ID</th>
+           <th><a (click)="sortBy('username')"><u>Username</u></a></th>   //hyperlink with click attribute
+           <th><a (click)="sortBy('firstname')"><u>First Name</u></a></th>
+           <th><a (click)="sortBy('lastname')"><u>Last name</u></a></th>
+  
+  
+         //  <th>First Name</th>
+          // <th>Last Name</th> 
+      </tr>
+      <tr *ngFor='let u of users | sort:sortCriteria:sortOrder'>    //// 'sort:' is calling our pipe functionality / takes entire list, displays it and applies the sort order & criteria that was selected by the headers 
+          <td>{{u.id}}</td>
+          <td>{{u.username}}</td>
+          <td>{{u.firstname}}</td>
+          <td>{{u.lastname}}</td>
+      </tr>
+  </thead>
+  </table> -->
+  
+  
+  
+
+<!-- <div class='component-content'>
   <div class='lefthalf'>
-    <span class='component-title'>[{{title}}] </span>
-    <span><a routerLink='/user/create'>
+    
+    <span class='component-title'><strong>{{title}}&nbsp; </strong></span>
+    <span><a routerLink='/user/create'> -->
+
     <!-- <span><a *ngIf='loggedInUser.isAdmin' routerLink='/user/create'> -->
-        <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
+      
+      <!-- <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
     </span>
+   
     <div>
     </div>
     <p *ngIf='!users'>Loading ...</p>
     <table class="table table-sm" *ngIf='users'>
       <tr>
-        <th class='table-secondary'></th>
-        <!-- can remove 'btn-link' to manipulate color scheme -->
+        <th class='table-secondary'></th> 
+      
         <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('id')"><u>User
               Id</u></a></th>
 
@@ -41,11 +114,13 @@
 
         <td class='actions'>
           <a routerLink='/user/detail/{{user.id}}' style='padding-left: 16px' class='actionIcon'><img
-              src='assets/details.png' width='20' height='20' title='Detail'></a> -->
+              src='assets/details.png' width='20' height='20' title='Detail'></a> 
           <a routerLink='/user/edit/{{user.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20'
-              height='20' title='Edit'></a></td>
+              height='20' title='Edit'></a></td>-->
+
           <!-- <a *ngIf='loggedInUser.isAdmin' routerLink='/user/edit/{{user.id}}' class='actionIcon'><img
               src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a> -->
         
-      </tr>
-    </table>
+      <!-- </tr>
+    </table> -->
+      <!-- can remove 'btn-link' to manipulate color scheme -->

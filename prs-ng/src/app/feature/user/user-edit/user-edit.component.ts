@@ -12,7 +12,7 @@ import { UserService } from '../../../service/user.service';
 
 export class UserEditComponent implements OnInit {
   user: Users = new Users();
-  title: string = 'User-Edit';
+  title: string = 'Edit User';
   
   constructor(private userSvc: UserService,
     private router: Router,

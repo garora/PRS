@@ -14,7 +14,7 @@ import { RequestLineItemService } from '@svc/requestLineItem.service';
 
 export class RequestReviewComponent implements OnInit
 {
-  title = "Requests For Review";
+  title = "Review Requests";
   requests: Requests[];   // property used in component typescript file to store list of requests once the service method is called
   loggedInUser: Users;
   sortCriteria = 'Id';

@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ProductDetailComponent implements OnInit {
   product: Products = new Products();
-  title: string = 'Product-Detail';
+  title: string = 'Product Detail';
   // NEED TO INJECT THE SERVICE    // ADD ROUTER ?? (WE WILL PROB USE) 
   //(Framework takes care of HTTP REQUEST / TCPIP PROTOCOL)
   constructor(private productSvc: ProductService,

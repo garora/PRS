@@ -18,7 +18,7 @@ import { Products } from '@model/products.class';
 export class RequestCreateComponent implements OnInit
 {
   request: Requests = new Requests();
-  title: 'Request-Create ';
+  title: 'Create Request';
   resp: any;
   loggedInUser: Users;
   products: Products[];

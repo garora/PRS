@@ -14,7 +14,7 @@ import { Users } from '@model/users.class';
 } )
 export class ProductEditComponent implements OnInit
 {
-  title = 'Product Edit';
+  title = 'Edit Product';
   id: number;
   product: Products;
   vendorsList: Vendors[];

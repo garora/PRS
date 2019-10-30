@@ -11,7 +11,7 @@ import { RequestService } from '../../../service/request.service';
 })
 export class RequestDetailComponent implements OnInit {
   request: Requests = new Requests();
-  title = 'Request-Detail';
+  title = 'Request Detail';
 
   
   constructor(private requestSvc: RequestService,

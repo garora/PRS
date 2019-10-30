@@ -11,7 +11,7 @@ import {Vendors} from '@model/vendors.class';
 })
 export class VendorListComponent implements OnInit {
   vendors: Vendors[];
-  title: string = 'Vendor-List';
+  title: string = 'List of Vendors';
   sortCriteria = 'name';
   sortOrder = 'asc';
 

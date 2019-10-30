@@ -8,7 +8,7 @@ import { Products } from '@model/products.class';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  title = 'Product List';
+  title = 'List of Products';
   productsList: Products[];   //product changed to products
   sortCriteria = 'name';
   sortOrder = 'asc';

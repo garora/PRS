@@ -12,7 +12,7 @@ import { RequestLineItemService } from '../../../service/requestLineItem.service
 })
 
 export class RequestLineItemEditComponent implements OnInit {
-  title: 'Request-Edit';
+  title: 'Edit Line Item';
   id: number;
   resp: any;
   request: Requests;

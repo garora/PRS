@@ -16,7 +16,7 @@ import { RequestLineItemService } from '@svc/requestLineItem.service';
 } )
 export class RequestLineItemCreateComponent implements OnInit
 { 
-  title: 'Create Request Line Item';
+  title: 'Create Line Item';
   productId: Products[ "id" ];
   product: Products;
   products: Products[];

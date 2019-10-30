@@ -18,7 +18,7 @@ export class RequestLinesComponent implements OnInit
   /*  ngOnInit(): void {
      throw new Error("Method not implemented.");
    } */
-  title: string = 'Requested Items';
+  title: string = 'Request Line';
   id: number;
   loggedInUserId: Users[ "id" ];
   lineId: string = '0';

@@ -20,7 +20,7 @@ export class RequestListComponent implements OnInit
   requests: Requests[];   // property used in component typescript file to store list of requests once the service method is called
   sortCriteria = 'name'; // default sort criteria
   sortOrder = 'asc';
-  title = 'List Requests';      // adds [List Requests] to white space between NAV & menu bar
+  title = 'List of Requests';      // adds [List Requests] to white space between NAV & menu bar
   requestlines: RequestLinesComponent;
   Request: Requests;
   loggedInUser: Users;
