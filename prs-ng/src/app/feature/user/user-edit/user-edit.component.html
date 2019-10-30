@@ -2,6 +2,7 @@
     <div id='pagetitle'>
         <!-- add styling -->
       <span><strong>{{title}}&nbsp;</strong></span>
+      <span><a routerLink='/user/list'><strong>Back to List</strong></a></span>
     </div>
     <p *ngIf='!user'>Loading...</p>
     <div *ngIf='user'>

@@ -24,8 +24,8 @@ export class Products {
         this.price=price;
         this.unit=unit;
         this.photoPath=photoPath;
-        this.vendorId=this.vendorId;
-        this.vendor=this.vendor;
+        this.vendorId=vendorId;
+        this.vendor=vendor;
     }
 
     about():string  {
