@@ -34,7 +34,8 @@ export class RequestReviewComponent implements OnInit
     console.log( this.requests );
 
     // this.loggedInUser = this.systemSvc.data.getLoggedInUser();
-    this.loggedInUser = this.systemSvc.getLoggedInUser();
+    // this.loggedInUser = this.systemSvc.getLoggedInUser();
+    this.loggedInUser = this.systemSvc.data.user.instance;
     console.log( 'user :', this.loggedInUser );
     this.user = this.loggedInUser;
 

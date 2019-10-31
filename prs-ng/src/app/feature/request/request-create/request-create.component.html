@@ -1,7 +1,7 @@
 <div id='component'>
   <div id='pagetitle'>
-    <span><strong>{{title}}&nbsp;</strong></span>
-    <span><a routerLink='/request/create'><strong>New Request</strong></a></span>
+    <span><strong>{{title}}&nbsp;&nbsp;&nbsp;</strong></span>
+    <!-- <span><a routerLink='/request/create'><strong>New Request</strong></a></span> -->
     <span><a routerLink='/request/list'><strong>Back to list</strong></a></span>
   </div>
   <p *ngIf='!request'>Loading...</p>
@@ -45,5 +45,5 @@
   <div class='form-group'>
     <button (click)='create()' class='btn btn-primary'>Create</button>
   </div>
-
-</div> <!-- need to add automatic form fill for user -->
+</div>
+<!-- </div> need to add automatic form fill for user -->

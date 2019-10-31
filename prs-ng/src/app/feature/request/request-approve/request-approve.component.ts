@@ -33,7 +33,8 @@ export class RequestApproveComponent implements OnInit
   ngOnInit ()
   {
     // this.loggedInUser = this.systemSvc.data.getLoggedInUser();
-    this.loggedInUser = this.systemSvc.getLoggedInUser();
+    // this.loggedInUser = this.systemSvc.getLoggedInUser();
+    this.loggedInUser = this.systemSvc.data.user.instance;
     console.log( "user: ", this.loggedInUser );
     this.route.params.subscribe( parms => this.id = parms[ 'id' ] );
     this.requestSvc.get( this.id ).subscribe( requests =>

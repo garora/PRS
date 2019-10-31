@@ -26,7 +26,8 @@ export class UserCreateComponent implements OnInit
   ngOnInit ()
   {
     // this.loggedInUser = this.systemSvc.data.getLoggedInUser();
-    this.loggedInUser = this.systemSvc.getLoggedInUser();
+    // this.loggedInUser = this.systemSvc.getLoggedInUser();
+    this.loggedInUser = this.systemSvc.data.user.instance;
     console.log( 'user: ', this.loggedInUser );
   }
 

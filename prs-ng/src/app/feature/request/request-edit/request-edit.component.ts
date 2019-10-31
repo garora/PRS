@@ -30,7 +30,8 @@ export class RequestEditComponent implements OnInit
 
   ngOnInit ()
   {                                 // ngOnInit is the first thing on page called
-    this.loggedInUser = this.systemSvc.getLoggedInUser();
+    // this.loggedInUser = this.systemSvc.getLoggedInUser();
+    this.loggedInUser = this.systemSvc.data.user.instance;
     console.log( "user: ", this.loggedInUser );
     this.route.params.subscribe( params => this.id = params.id );
     this.requestSvc.get( this.id ).subscribe( resp =>

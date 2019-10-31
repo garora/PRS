@@ -40,7 +40,8 @@ export class RequestListComponent implements OnInit
         this.requests = resp as Requests[];
       } );
     // this.loggedInUser = this.systemSvc.data.getLoggedInUser();
-    this.loggedInUser = this.systemSvc.getLoggedInUser();
+    // this.loggedInUser = this.systemSvc.getLoggedInUser();
+    this.loggedInUser = this.systemSvc.data.user.instance;
     console.log( "user: ", this.loggedInUser );
   }
 
