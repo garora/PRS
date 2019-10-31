@@ -21,8 +21,8 @@ export class RequestCreateComponent implements OnInit
   title: 'Create Request';
   resp: any;
   loggedInUser: Users;
-  products: Products[];
-  product: Products;
+  // products: Products[];
+  // product: Products;
 
   constructor ( private requestSvc: RequestService,
     private userSvc: UserService,
@@ -33,28 +33,29 @@ export class RequestCreateComponent implements OnInit
   }
   ngOnInit ()
   {
-    this.loggedInUser = this.systemSvc.getLoggedInUser();
+    this.loggedInUser = this.systemSvc.data.user.instance;
     console.log( 'user: ', this.loggedInUser );
     this.request.userId = this.loggedInUser.id;
 
-    if ( this.loggedInUser.isAdmin !== true )
-    {
-      console.log( 'You don’t have administrative authority.' )
-    }
+    // if ( this.loggedInUser.isAdmin !== true )
+    // {
+    //   console.log( 'You don’t have administrative authority.' )
+    // }
 
   }
   create ()
   {
-    this.request.userId=this.loggedInUser.id;
-    this.request.user=null;
-    this.request.status="New"
-    console.log(this.request);
+    this.request.user = this.loggedInUser;
+    this.request.userId = this.request.user.id;
+    this.request.user = null;
+    this.request.status = "New"
+    console.log( this.request );
 
     this.requestSvc.create( this.request ).subscribe( resp =>
     {
-      this.request = resp
+      this.request = resp as Requests;
+      this.router.navigate( [ 'request/list' ] );
     } );
-    this.router.navigate( [ 'request/list' ] );
     console.log( 'Request added' );
   }
 }

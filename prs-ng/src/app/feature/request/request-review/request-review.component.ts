@@ -15,13 +15,13 @@ import { RequestLineItemService } from '@svc/requestLineItem.service';
 export class RequestReviewComponent implements OnInit
 {
   title = "Review Requests";
-  requests: Requests[];   // property used in component typescript file to store list of requests once the service method is called
+  requests: Requests[] = [];   // property used in component typescript file to store list of requests once the service method is called
   loggedInUser: Users;
   sortCriteria = 'Id';
   sortOrder = 'asc';
   user: Users;
   request: Requests;
-  resp: Response; 
+  resp: Response;
   requestlines: RequestLinesComponent;
 
 
@@ -31,19 +31,22 @@ export class RequestReviewComponent implements OnInit
 
   ngOnInit ()
   {
+    console.log( this.requests );
+
     // this.loggedInUser = this.systemSvc.data.getLoggedInUser();
     this.loggedInUser = this.systemSvc.getLoggedInUser();
     console.log( 'user :', this.loggedInUser );
     this.user = this.loggedInUser;
 
-    
-    
-      this.requestSvc.listReview().subscribe( resp =>
-      {
-        this.requests = resp as Requests[];
-      }
-      );
-    
+
+
+    this.requestSvc.listReview().subscribe( resp =>
+    {
+      console.log( resp );
+      this.requests = resp as Requests[];
+    }
+    );
+
   }
 }
 

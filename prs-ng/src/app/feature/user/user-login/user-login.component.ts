@@ -14,6 +14,7 @@ export class UserLoginComponent implements OnInit
 {
   message: any;
   user: Users = new Users( 0, '', '', '', '', '', '', false, false );
+  users: Users[];
   // this.systemsvc.clearLogin();
 
   constructor ( private userSvc: UserService,
@@ -22,26 +23,38 @@ export class UserLoginComponent implements OnInit
 
   ngOnInit ()
   {
+    this.userSvc.list().subscribe( resp =>
+    {
+      this.users = resp;
+    } );
 
   }
 
   login ()
   {
-    this.userSvc.login( this.user.username, this.user.password )
-      .subscribe( resp =>
-      {
-        this.user = resp as Users;   // taking authentication of user and applying to user and saves                
-        this.systemSvc.setLoggedInUser( this.user );
-        console.log( 'Logged in as ' + this.user.username )
-        /*  this.systemSvc.data.user.instance = this.user;
-         this.systemSvc.data.user.loggedIn = true; */
-        this.router.navigateByUrl( '/user/list' );
-      },
-        err =>
-        {
-          this.message = 'login error - please enter a registered login and password';
-        }
-      );
+    this.userSvc.login( this.user.username, this.user.password ).subscribe( resp =>
+    {
+      var user = resp as Users;
+      this.systemSvc.data.user.instance = user;
+      this.systemSvc.data.user.loggedIn = true;
+      this.router.navigateByUrl( '/user/list' );
+    } );
+    // this.userSvc.login( this.user.username, this.user.password )
+    //   .subscribe( resp =>
+    //   {
+    //     this.user = resp as Users;   // taking authentication of user and applying to user and saves                
+    //     this.systemSvc.setLoggedInUser( this.user );
+    //     console.log( 'Logged in as ' + this.user.username )
+    //     /*  this.systemSvc.data.user.instance = this.user;
+    //      this.systemSvc.data.user.loggedIn = true; */
+    //     this.router.navigateByUrl( '/user/list' );
+    //   },
+    //     err =>
+    //     {
+    //       this.message = 'login error - please enter a registered login and password';
+    //     }
+    //     );
+    // }
   }
 }
 

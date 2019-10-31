@@ -13,11 +13,32 @@ namespace PRS.Controllers
     [ApiController]
     public class RequestLineControllerAPI : ControllerBase
     {
-        private readonly MyDb _context;
+        #region Public Constructors
 
         public RequestLineControllerAPI(MyDb context)
         {
             _context = context;
+        }
+
+        #endregion Public Constructors
+
+        #region Public Methods
+
+        // DELETE: api/RequestLineControllerAPI/5
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<RequestLines>> DeleteRequestLines(int id)
+        {
+            var requestLines = await _context.RequestLines.FindAsync(id);
+            if (requestLines == null)
+            {
+                return NotFound();
+            }
+            _context.RequestLines.Remove(requestLines);
+            await _context.SaveChangesAsync();
+            /* CALL RECALC */
+            var success = RecalculateRequestTotal(id);
+            if (!success) { return this.StatusCode(500); }
+            return requestLines;
         }
 
         // GET: api/RequestLineControllerAPI
@@ -41,9 +62,26 @@ namespace PRS.Controllers
             /* CALL RECALC */
             var success = RecalculateRequestTotal(id);
             if (!success) { return this.StatusCode(500); }
-          
 
             return requestLines;
+        }
+
+        [HttpGet("byRiD/{id}")]
+        public async Task<ActionResult<IEnumerable<RequestLines>>> GetRLbyRID(int id)
+        {
+            return await _context.RequestLines.Where(rl => rl.RequestId == id).ToListAsync();
+        }
+
+        // POST: api/RequestLineControllerAPI
+        [HttpPost]
+        public async Task<ActionResult<RequestLines>> PostRequestLines(RequestLines requestLines)
+        {
+            _context.RequestLines.Add(requestLines);
+            await _context.SaveChangesAsync();
+            /* CALL RECALC */
+            var success = RecalculateRequestTotal(requestLines.RequestId);
+            if (!success) { return this.StatusCode(500); }
+            return CreatedAtAction("GetRequestLines", new { id = requestLines.Id }, requestLines);
         }
 
         // PUT: api/RequestLineControllerAPI/5
@@ -64,8 +102,7 @@ namespace PRS.Controllers
                 /* CALL RECALC */
                 var success = RecalculateRequestTotal(id);
                 if (!success) { return this.StatusCode(500); }
-               
-               
+
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -78,55 +115,30 @@ namespace PRS.Controllers
                     throw;
                 }
             }
-                       
 
             return NoContent();
         }
 
-        // POST: api/RequestLineControllerAPI
-        [HttpPost]
-        public async Task<ActionResult<RequestLines>> PostRequestLines(RequestLines requestLines)
-        {
-            _context.RequestLines.Add(requestLines);
-            await _context.SaveChangesAsync();
-            /* CALL RECALC */
-            var success = RecalculateRequestTotal(requestLines.RequestId);
-            if (!success) { return this.StatusCode(500); }         
-            return CreatedAtAction("GetRequestLines", new { id = requestLines.Id }, requestLines);
-        }
+        #endregion Public Methods
 
-        // DELETE: api/RequestLineControllerAPI/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<RequestLines>> DeleteRequestLines(int id)
-        {
-            var requestLines = await _context.RequestLines.FindAsync(id);
-            if (requestLines == null)
-            {
-                return NotFound();
-            }
-            _context.RequestLines.Remove(requestLines);
-            await _context.SaveChangesAsync();           
-            /* CALL RECALC */
-            var success = RecalculateRequestTotal(id);
-            if ( !success ) { return this.StatusCode(500); }          
-              return requestLines;           
-        }
-        private bool RequestLinesExists(int id)
-        {
-            return _context.RequestLines.Any(e => e.Id == id);
-        }
+        #region Private Fields
 
+        private readonly MyDb _context;
+
+        #endregion Private Fields
+
+        #region Private Methods
 
         // Recalculate Total:
-        // PUT: api/RequestLineControllerAPI/5(reqId) 
+        // PUT: api/RequestLineControllerAPI/5(reqId)
         [HttpDelete("{id}")]// C#Include  SqlServer Join
         private bool RecalculateRequestTotal(int requestId)
         {
             var request = _context.Requests
                      .SingleOrDefault(r => r.Id == requestId);
-            if ( request == null)
+            if (request == null)
             {
-                Console.WriteLine("There are no pending requests for " + request.User + "."); 
+                Console.WriteLine("There are no pending requests for " + request.User + ".");
                 Console.Out.Close();
                 return false; //  same as return NotFound (if it were a webservice) using T/F here because we will probably be using it i
             }
@@ -141,6 +153,12 @@ namespace PRS.Controllers
             _context.SaveChanges();
             return true;                 //  same as return Ok (if it were a webservice)
         }
-       
+
+        private bool RequestLinesExists(int id)
+        {
+            return _context.RequestLines.Any(e => e.Id == id);
+        }
+
+        #endregion Private Methods
     }
 }

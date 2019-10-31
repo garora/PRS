@@ -8,70 +8,87 @@ import { Router } from '@angular/router';
 
 export class SystemService
 {
-  
-  constructor ( private router: Router ) { }
-
-  private loggedInUser: Users | null = null;
-
-  setLoggedInUser ( user: Users ): void
-  {
-    this.loggedInUser = user;
+  data = {
+    about: 'systemService', user: { loggedIn: false, instance: null }
   }
 
-  getLoggedInUser (): Users | null
-  {
-    return this.loggedInUser;
-  }
+  constructor () { }
 
-  isUserLoggedIn (): boolean
-  { return this.loggedInUser != null }
-
-
-  isAdmin (): boolean
-  {
-    if ( this.isUserLoggedIn() )
-      return false
-    return this.getLoggedInUser().isAdmin;
-  }
-
-  isReviewer (): boolean
-  {
-    if ( !this.isUserLoggedIn() )
-      return false
-    return this.getLoggedInUser().isReviewer;
-  }
 }
 
 
-// data = {
-//   about: 'System Service',
-//   user: {
-//     loggedIn: false,
-//     instance: null
-// },
-// setLoggedInUser(user: Users): void {
-//   this.loggedInUser = user;
-// },
+// export class SystemService
+// {
 
-// getLoggedInUser(): Users | null {
-//   return this.loggedInUser;
-// },
+//   constructor ( private router: Router ) { }
 
-// isUserLoggedIn(): boolean
-//  { return this.loggedInUser!= null },
+//   private loggedInUser: Users | null = null;
 
-
-// isAdmin(): boolean {
-//   if(this.isUserLoggedIn())
-//   return false
-//   return this.getLoggedInUser().isAdmin;
-// },
-
-// isReviewer(): boolean {
-//   if(!this.isUserLoggedIn())
-//   return false
-//   return this.getLoggedInUser().isReviewer;
+//   setLoggedInUser ( user: Users ): void
+//   {
+//     this.loggedInUser = user;
 //   }
+
+//   getLoggedInUser (): Users | null
+//   {
+//     return this.loggedInUser;
+//   }
+
+//   isUserLoggedIn (): boolean
+//   { return this.loggedInUser != null }
+
+
+//   isAdmin (): boolean
+//   {
+//     if ( this.isUserLoggedIn() )
+//       return false
+//     return this.getLoggedInUser().isAdmin;
+//   }
+
+//   isReviewer (): boolean
+//   {
+//     if ( !this.isUserLoggedIn() )
+//       return false
+//     return this.getLoggedInUser().isReviewer;
+//   }
+
+//   data = {
+//     about: 'System Service',
+//     user: {
+//       loggedIn: false,
+//       instance: null
+//     },
+//     setLoggedInUser ( user: Users ): void
+//     {
+//       this.loggedInUser = user;
+//     },
+
+//     getLoggedInUser (): Users | null
+//     {
+//       return this.loggedInUser;
+//     },
+
+//     isUserLoggedIn (): boolean
+//     { return this.loggedInUser != null },
+
+
+//     isAdmin (): boolean
+//     {
+//       if ( this.isUserLoggedIn() )
+//         return false
+//       return this.getLoggedInUser().isAdmin;
+//     },
+
+//     isReviewer (): boolean
+//     {
+//       if ( !this.isUserLoggedIn() )
+//         return false
+//       return this.getLoggedInUser().isReviewer;
+//     }
+//   }
+
 // }
-// }
+
+
+
 

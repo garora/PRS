@@ -6,37 +6,48 @@ import { Requests } from '../model/requests.class';
 import { Users } from '../model/users.class';
 
 
-@Injectable({
+@Injectable( {
   providedIn: 'root'
-})
+} )
 
-  export class RequestLineItemService {
-  url = 'https://localhost:44379/api/request';
-  constructor(private http: HttpClient
+export class RequestLineItemService
+{
+  url = 'https://localhost:44379/api/RequestLine';
+  constructor ( private http: HttpClient
   ) { }
 
-  list(): Observable<Requests[]> {
-    return this.http.get(this.url) as Observable<Requests[]>;
+  list (): Observable<Requests[]>
+  {
+    return this.http.get( this.url ) as Observable<Requests[]>;
   }
 
-  listById(id): Observable<RequestLineItems[]> {
-    return this.http.get(this.url+"/?id="+id) as Observable<RequestLineItems[]>;
+  listById ( id ): Observable<RequestLineItems[]>
+  {
+    return this.http.get( this.url + "/?id=" + id ) as Observable<RequestLineItems[]>;
   }
 
-  get(id: number): Observable<Requests> {
-    return this.http.get(this.url + '/' + id) as Observable<Requests>;
+  get ( id: number ): Observable<Requests>
+  {
+    return this.http.get( this.url + '/' + id ) as Observable<Requests>;
   }
 
-  create(request: Requests): Observable<any> {
-    return this.http.post(this.url, request) as Observable<any>;
+  create ( request: Requests ): Observable<any>
+  {
+    return this.http.post( this.url, request ) as Observable<any>;
   }
 
-  edit(request: Requests): Observable<any> {
-    return this.http.put(this.url + '/' + request.id, request) as Observable<any>;
+  edit ( request: Requests ): Observable<any>
+  {
+    return this.http.put( this.url + '/' + request.id, request ) as Observable<any>;
   }
 
-  delete(id: number): Observable<any> {
-    return this.http.delete(this.url + '/' + id);
+  delete ( id: number ): Observable<any>
+  {
+    return this.http.delete( this.url + '/' + id );
+  }
+  RlbyRiD ( id: number ): Observable<any>
+  {
+    return this.http.get( this.url + `/byRiD/${ id }` ) as Observable<any>;
   }
 
 

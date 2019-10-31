@@ -80,7 +80,7 @@ namespace PRS.Controllers
         }
 
         // GET: api/GetRequestsForReview
-        [Route("/api/RequestReview")]     // add slash to beginning because it is absolute route to method
+        [Route("/api/Request/Review")]     // add slash to beginning because it is absolute route to method
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Requests>>> GetRequestsForReview()
         {

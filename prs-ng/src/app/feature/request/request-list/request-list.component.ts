@@ -33,6 +33,7 @@ export class RequestListComponent implements OnInit
 
   ngOnInit ()
   {                                     // populate list of requests
+    console.log( 'hello' );
     this.requestSvc.list().subscribe(
       resp =>
       {

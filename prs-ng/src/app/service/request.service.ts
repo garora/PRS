@@ -5,51 +5,61 @@ import { Requests } from '../model/requests.class';
 import { Users } from '../model/users.class';
 
 
-@Injectable({
+@Injectable( {
   providedIn: 'root'
-})
-  export class RequestService {
+} )
+export class RequestService
+{
   url = 'https://localhost:44379/api/request';
-  constructor(private http: HttpClient
+  constructor ( private http: HttpClient
   ) { }
 
-  list(): Observable<Requests[]> {
-    return this.http.get(this.url) as Observable<Requests[]>;
+  list (): Observable<Requests[]>
+  {
+    return this.http.get( this.url ) as Observable<Requests[]>;
   }
-  create(request: Requests): Observable<any> {
-    return this.http.post(this.url, request) as Observable<any>;
+  create ( request: Requests ): Observable<any>
+  {
+    return this.http.post( this.url, request ) as Observable<any>;
   }
- 
+
   // id as defined in request api controller
-  listReview(): Observable<Requests[]> {
-    return this.http.get(this.url + 'Review')as Observable<Requests[]>;
-  }
-
- 
-  get(id: number): Observable<Requests> {
-    return this.http.get(this.url + '/' + id) as Observable<Requests>;
-  }
-    
-  edit(request: Requests): Observable<any> {
-    return this.http.put(this.url + '/' + request.id, request) as Observable<any>;
-  }
-  delete(id: number): Observable<any> {
-    return this.http.delete(this.url + '/' + id);  /* as observable<any> */
+  listReview (): Observable<Requests[]>
+  {
+    return this.http.get( this.url + '/Review' ) as Observable<Requests[]>;
   }
 
 
-  submitReview(request: Requests): Observable< any> {
-    return this.http.put(this.url + '/Review/'+request.id, Requests) as Observable<any>;
- }
+  get ( id: number ): Observable<Requests>
+  {
+    return this.http.get( this.url + '/' + id ) as Observable<Requests>;
+  }
 
- 
- approve(request: Requests): Observable<Requests> {
-  return this.http.post(this.url + '/Approved/' + request.id,  request) as Observable<any>;
-}
+  edit ( request: Requests ): Observable<any>
+  {
+    return this.http.put( this.url + '/' + request.id, request ) as Observable<any>;
+  }
+  delete ( id: number ): Observable<any>
+  {
+    return this.http.delete( this.url + '/' + id );  /* as observable<any> */
+  }
 
-reject(id: number): Observable<any> {
-  return this.http.post(this.url + '/Rejected/' + id, Requests) as Observable<any>;
-}
+
+  submitReview ( request: Requests ): Observable<any>
+  {
+    return this.http.put( this.url + '/Review/' + request.id, Requests ) as Observable<any>;
+  }
+
+
+  approve ( request: Requests ): Observable<Requests>
+  {
+    return this.http.post( this.url + '/Approved/' + request.id, request ) as Observable<any>;
+  }
+
+  reject ( id: number ): Observable<any>
+  {
+    return this.http.post( this.url + '/Rejected/' + id, Requests ) as Observable<any>;
+  }
 
 
 }

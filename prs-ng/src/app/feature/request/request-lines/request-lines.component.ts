@@ -25,7 +25,7 @@ export class RequestLinesComponent implements OnInit
   resp: any;
   request: Requests;
   requestLineItems: RequestLineItems[];
-  requestLineItem: RequestLineItems;
+  //requestLineItem: RequestLineItems;
 
   constructor ( private requestSvc: RequestService,
     private requestLineItemService: RequestLineItemService,
@@ -35,7 +35,10 @@ export class RequestLinesComponent implements OnInit
 
   ngOnInit ()
   {
-    this.route.params.subscribe( parms => this.id = parms[ 'id' ] );
+
+    // TODO: Use new api to retrieve rls by id
+    console.log( "hello" );
+    this.route.params.subscribe( parms => this.id = parms.id );
     this.requestSvc.get( this.id ).subscribe( requests =>
     {
       this.request = requests;

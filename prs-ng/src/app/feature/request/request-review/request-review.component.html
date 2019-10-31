@@ -1,54 +1,63 @@
 <div class='component-content'>
-    <div class='lefthalf'>
-      <span class='component-title'><strong>{{title}}&nbsp;</strong> </span>
-      <span><a routerLink='/request/list'><strong>Back to list</strong></a></span>
-     
-  <p *ngIf='!requests'>Loading ...</p>
-  <table class="table table-sm" *ngIf='requests'>
-    <tr>
-   
-    
-      <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('id')"><u>Id</u></a></th>
-      <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('userName')"><u>User Name</u></a></th>
-      <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('description')"><u>Description</u></a></th>
-      <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('justification')"><u>Justification</u></a></th>
-      <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('deliveryMode')"><u>Delivery Mode</u></a></th>
-      <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('status')"><u>Status</u></a></th>
-      <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" (click)="sortBy('total')"><u>Total</u></a></th>
-      <!-- <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ><u>Rejection Reason</u></a></th> -->
-      <th class="table-secondary btn-link"><a class='btn btn-link font-weight-bold'>Action</a></th>
-    </tr>
-  
-         <tr *ngFor='let request of requests | sort:sortCriteria:sortOrder'>
-          <!-- *ngIf='request.userId != this.loggedInUser.id' ARE NOT USED IN REQUEST LIST ONLY REVIEW -->
-          <td *ngIf='request.userId != this.loggedInUser.id'>{{request.id}}</td>
-          <td *ngIf='request.userId != this.loggedInUser.id'>{{request.user.username}}</td>
-          <td *ngIf='request.userId != this.loggedInUser.id'>{{request.description}}</td>
-          <td *ngIf='request.userId != this.loggedInUser.id'>{{request.justification}}</td>
-          <td *ngIf='request.userId != this.loggedInUser.id'> {{request.deliveryMode}} </td>
-          <td *ngIf='request.userId != this.loggedInUser.id'>{{request.status}}</td>
-          <td *ngIf='request.userId != this.loggedInUser.id'>{{request.total | currency}}</td>     
-          <!-- <td *ngIf='request.userId != this.loggedInUser.id'>{{request.isReviewer?"Reviewer":""}} {{request.admin?"admin":""}}</td> -->
-          
-          <div *ngIf='request.userId != this.loggedInUser.id' class='form-group'> 
-              <a routerLink='/request/approve/{{request.id}}' class='btn btn-primary'>REVIEW</a>
-         
-               
-              <!-- can remove 'btn-link' to manipulate color scheme -->
-             <a routerLink='/request/detail/{{request.id}}' style='padding-left: 16px' class='actionIcon'><img src='assets/details.png' width='20' height='20' title='Detail'></a>
-             <div>
-               <div>
-              
-             </div>
-          <td class='actions'>
-             <a routerLink='/request/edit/{{request.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a></td>
-             <a routerLink='/request/lines/{{request.id}}'><img src='assets/lines.png' width='20' height='20' title='Lines'></a>
-              <a *ngIf='loggedInUser.admin' routerLink='/request/edit/{{request.id}}' class='actionIcon'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a>
-        
-    </div>
-  </div>
-    
-  <!-- <span><a *ngIf='!loggedInUser.admin' routerLink='/request/list'>  </span>    
+  <div class='lefthalf'>
+    <span class='component-title'><strong>{{title}}&nbsp;&nbsp;&nbsp;</strong> </span>
+    <span><a routerLink='/request/list'><strong>Back to list</strong></a></span>
+
+    <p *ngIf='!requests'>Loading ...</p>
+    <table class="table table-sm" *ngIf='requests'>
+      <tr>
+
+
+        <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
+            (click)="sortBy('id')"><u>Id</u></a></th>
+        <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
+            (click)="sortBy('userName')"><u>User Name</u></a></th>
+        <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
+            (click)="sortBy('description')"><u>Description</u></a></th>
+        <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
+            (click)="sortBy('justification')"><u>Justification</u></a></th>
+        <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
+            (click)="sortBy('deliveryMode')"><u>Delivery Mode</u></a></th>
+        <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
+            (click)="sortBy('status')"><u>Status</u></a></th>
+        <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
+            (click)="sortBy('total')"><u>Total</u></a></th>
+        <!-- <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ><u>Rejection Reason</u></a></th> -->
+        <th class="table-secondary btn-link"><a class='btn btn-link font-weight-bold'>Action</a></th>
+      </tr>
+
+      <tr *ngFor='let request of requests | sort:sortCriteria:sortOrder'>
+        <!-- *ngIf='request.userId != this.loggedInUser.id' ARE NOT USED IN REQUEST LIST ONLY REVIEW -->
+        <td>{{request.id}}</td>
+        <td>{{request.user.username}}</td>
+        <td>{{request.description}}</td>
+        <td>{{request.justification}}</td>
+        <td> {{request.deliveryMode}} </td>
+        <td>{{request.status}}</td>
+        <td>{{request.total | currency}}</td>
+        <!-- <td *ngIf='request.userId != this.loggedInUser.id'>{{request.isReviewer?"Reviewer":""}} {{request.admin?"admin":""}}</td> -->
+
+        <div *ngIf='request.userId != this.loggedInUser.id' class='form-group'>
+          <a routerLink='/request/approve/{{request.id}}' class='btn btn-primary'>REVIEW</a>
+
+
+          <!-- can remove 'btn-link' to manipulate color scheme -->
+          <a routerLink='/request/detail/{{request.id}}' style='padding-left: 16px' class='actionIcon'><img
+              src='assets/details.png' width='20' height='20' title='Detail'></a>
+          <div>
+            <div>
+
+            </div>
+            <td class='actions'>
+              <a routerLink='/request/edit/{{request.id}}' class='actionIcon'><img src='assets/pencil-icon.png'
+                  width='20' height='20' title='Edit'></a></td>
+            <a routerLink='/request/lines/{{request.id}}'><img src='assets/lines.png' width='20' height='20'
+                title='Lines'></a>
+            <a *ngIf='loggedInUser.admin' routerLink='/request/edit/{{request.id}}' class='actionIcon'><img
+                src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a>
+
+          </div>
+        </div>
+
+        <!-- <span><a *ngIf='!loggedInUser.admin' routerLink='/request/list'>  </span>    
     <span><a *ngIf='loggedInUser.admin == request.userName' routerLink='/request/list'>  </span>   -->
-  
-  

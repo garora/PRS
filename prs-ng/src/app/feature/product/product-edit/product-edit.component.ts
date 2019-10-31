@@ -4,59 +4,111 @@ import { ProductService } from '../../../service/product.service';
 import { Products } from '../../../model/products.class';
 import { VendorService } from '../../../service/vendor.service';
 import { Vendors } from '../../../model/vendors.class';
-import { SystemService } from '@svc/system.service';
-import { Users } from '@model/users.class';
 
-@Component( {
+@Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
-  styleUrls: [ './product-edit.component.css' ]
-} )
-export class ProductEditComponent implements OnInit
-{
+  styleUrls: ['./product-edit.component.css'],
+})
+export class ProductEditComponent implements OnInit {
   title = 'Edit Product';
   id: number;
   product: Products;
   vendorsList: Vendors[];
-  loggedInUser: Users;
 
-  constructor ( private prdSvc: ProductService,
+  constructor(
+    private prdSvc: ProductService,
     private vndrSvc: VendorService,
-    private systemSvc: SystemService,
     private router: Router,
-    private route: ActivatedRoute ) { }
+    private route: ActivatedRoute,
+  ) {}
 
-  ngOnInit ()
-  {
-    // this.loggedInUser = this.systemSvc.data.getLoggedInUser();
-    this.loggedInUser = this.systemSvc.getLoggedInUser();
-    console.log( 'user: ', this.loggedInUser );
-    if ( this.loggedInUser.isAdmin == true )
-      this.route.params.subscribe( params => this.id = params.id );
-    this.prdSvc.get( this.id ).subscribe( resp =>
-    {
+  ngOnInit() {
+    this.route.params.subscribe(params => (this.id = params.id));
+    this.prdSvc.get(this.id).subscribe(resp => {
       this.product = resp as Products;
-      this.vndrSvc.list().subscribe( jresp =>
-      {
+      this.vndrSvc.list().subscribe(jresp => {
         this.vendorsList = jresp as Vendors[];
-      } );
-    } );
+      });
+    });
   }
 
-  edit ()
-  {
+  edit() {
     this.product.vendorId = this.product.vendor.id;
-    this.product.vendor = null;  // if you don't nullify, the back end will fail
-    console.log( this.product );
-    this.prdSvc.edit( this.product ).subscribe( resp =>
-    {
+    this.product.vendor = null; // if you don't nullify, the back end will fail
+    console.log(this.product);
+    this.prdSvc.edit(this.product).subscribe(resp => {
       this.product = resp as Products;
-      this.router.navigate( [ '/product/list' ] );
-    } );
+      this.router.navigate(['/product/list']);
+    });
   }
 
-  compareFn ( v1: number, v2: number ): boolean
-  {    //comparing 2 numbers passed on value and type
+  compareFn(v1: number, v2: number): boolean {
+    // comparing 2 numbers passed on value and type
     return v1 === v2;
   }
 }
+
+// 10/28
+// import { Component, OnInit } from '@angular/core';
+// import { Router, ActivatedRoute } from '@angular/router';
+// import { ProductService } from '../../../service/product.service';
+// import { Products } from '../../../model/products.class';
+// import { VendorService } from '../../../service/vendor.service';
+// import { Vendors } from '../../../model/vendors.class';
+// import { SystemService } from '@svc/system.service';
+// import { Users } from '@model/users.class';
+
+// @Component( {
+//   selector: 'app-product-edit',
+//   templateUrl: './product-edit.component.html',
+//   styleUrls: [ './product-edit.component.css' ]
+// } )
+// export class ProductEditComponent implements OnInit
+// {
+//   title = 'Edit Product';
+//   id: number;
+//   product: Products;
+//   vendorsList: Vendors[];
+//   loggedInUser: Users;
+
+//   constructor ( private prdSvc: ProductService,
+//     private vndrSvc: VendorService,
+//     private systemSvc: SystemService,
+//     private router: Router,
+//     private route: ActivatedRoute ) { }
+
+//   ngOnInit ()
+//   {
+// this.loggedInUser = this.systemSvc.data.getLoggedInUser();
+//   this.loggedInUser = this.systemSvc.getLoggedInUser();
+//   console.log( 'user: ', this.loggedInUser );
+//   if ( this.loggedInUser.isAdmin == true )
+//     this.route.params.subscribe( params => this.id = params.id );
+//   this.prdSvc.get( this.id ).subscribe( resp =>
+//   {
+//     this.product = resp as Products;
+//     this.vndrSvc.list().subscribe( jresp =>
+//     {
+//       this.vendorsList = jresp as Vendors[];
+//     } );
+//   } );
+// }
+
+// edit ()
+// {
+//   this.product.vendorId = this.product.vendor.id;
+//   this.product.vendor = null;  // if you don't nullify, the back end will fail
+//   console.log( this.product );
+//   this.prdSvc.edit( this.product ).subscribe( resp =>
+//   {
+//     this.product = resp as Products;
+//     this.router.navigate( [ '/product/list' ] );
+//   } );
+// }
+
+// compareFn ( v1: number, v2: number ): boolean
+// {    //comparing 2 numbers passed on value and type
+//     return v1 === v2;
+//   }
+// }
