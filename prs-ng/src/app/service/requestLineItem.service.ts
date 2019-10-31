@@ -16,9 +16,9 @@ export class RequestLineItemService
   constructor ( private http: HttpClient
   ) { }
 
-  list (): Observable<Requests[]>
+  list (): Observable<RequestLineItems[]>
   {
-    return this.http.get( this.url ) as Observable<Requests[]>;
+    return this.http.get( this.url ) as Observable<RequestLineItems[]>;
   }
 
   listById ( id ): Observable<RequestLineItems[]>
@@ -26,17 +26,17 @@ export class RequestLineItemService
     return this.http.get( this.url + "/?id=" + id ) as Observable<RequestLineItems[]>;
   }
 
-  get ( id: number ): Observable<Requests>
+  get ( id: number ): Observable<RequestLineItems>
   {
-    return this.http.get( this.url + '/' + id ) as Observable<Requests>;
+    return this.http.get( this.url + '/' + id ) as Observable<RequestLineItems>;
   }
 
-  create ( request: Requests ): Observable<any>
+  create ( request: RequestLineItems ): Observable<any>
   {
     return this.http.post( this.url, request ) as Observable<any>;
   }
 
-  edit ( request: Requests ): Observable<any>
+  edit ( request: RequestLineItems ): Observable<any>
   {
     return this.http.put( this.url + '/' + request.id, request ) as Observable<any>;
   }

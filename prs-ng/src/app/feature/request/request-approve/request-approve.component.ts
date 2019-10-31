@@ -91,7 +91,7 @@ export class RequestApproveComponent implements OnInit
   }
   approve ()
   {
-    this.requestSvc.approve( this.request ).subscribe(
+    this.requestSvc.approve( this.request.id ).subscribe(
       resp =>
       {
         this.resp = resp;

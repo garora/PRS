@@ -32,13 +32,20 @@ export class UserLoginComponent implements OnInit
 
   login ()
   {
+
     this.userSvc.login( this.user.username, this.user.password ).subscribe( resp =>
     {
       var user = resp as Users;
       this.systemSvc.data.user.instance = user;
       this.systemSvc.data.user.loggedIn = true;
       this.router.navigateByUrl( '/user/list' );
-    } );
+    }
+      ,
+      err =>
+      {
+        this.message = 'login error - please enter a registered login and password';
+      }
+    );
     // this.userSvc.login( this.user.username, this.user.password )
     //   .subscribe( resp =>
     //   {

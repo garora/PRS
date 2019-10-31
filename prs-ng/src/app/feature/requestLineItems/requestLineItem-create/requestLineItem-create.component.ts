@@ -23,6 +23,7 @@ export class RequestLineItemCreateComponent implements OnInit
   req: Requests = new Requests( 0, '', '', '', '', '', 0, 0, null );
   products: Products[] = [ this.product ];
   reqline: RequestLineItems = new RequestLineItems( 0, 0, 0, 1, this.product, null );
+  pID: number = 0;
   // productId: Products[ "id" ];
   // product: Products;
   // request: Requests;
@@ -53,12 +54,21 @@ export class RequestLineItemCreateComponent implements OnInit
 
   create ()
   {
+    console.log( this.products )
     console.log( this.req );
+    for ( let i: number = 0; i < this.products.length; i++ )
+    {
+      if ( this.products[ i ].id == this.pID )
+      {
+        this.product = this.products[ i ];
+      }
+    }
     this.reqline.request = this.req;
+    this.reqline.product = this.product;
     this.reqline.requestId = this.reqId;
-    this.reqline.productId = this.reqline.product.id;
+    this.reqline.productId = this.pID;
     this.reqline.product = null;
-    this.reqline.requestId = this.reqline.request.id;
+    // this.reqline.requestId = this.reqline.request.id;
     this.reqline.request = null;
     this.reqlineSvc.create( this.reqline ).subscribe( resp =>
     {

@@ -43,7 +43,7 @@
 </table>
 <div class='lefthalf'>
   <span class='component-title'><strong>Request Lines </strong></span>
-  <span><a routerLink='/request-lines/create/{{request.id}}'>
+  <span><a routerLink='/requestLineItems/create/{{id}}'>
       <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
   </span>
   <!-- <span *ngIf='loggedInUser.admin'><a routerLink='/request/create'> -->
@@ -60,26 +60,17 @@
 
     <th class="table-secondary btn-link"><a class='btn btn-link font-weight-bold'>Action</a></th>
   </tr>
-  <tr *ngFor='let rl of requestLines'>
+  <tr *ngFor='let rl of requestLineItems'>
     <td></td>
     <td>{{rl.product.name}}</td>
     <td>{{rl.quantity}}</td>
     <td>{{rl.product.price | currency}}</td>
     <td>{{rl.quantity*rl.product.price | currency}}</td>
-
-    <td class='actions'>
-      <a routerLink='/request-line/edit/{{rl.id}}' style='padding-left: 16px' class='actionIcon'><img
-          src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a>
-      <!-- <a *ngIf='loggedInUser.admin' routerLink='/request/edit/{{request.id}}' class='actionIcon'><img -->
-      <a routerLink='/requestlines/{{request.id}}' class='actionIcon' (click)='remove(rl.id)'><img
-          src='assets/delete.jpg' width='20' height='20' title='Remove'></a>
-
-    </td>
   </tr>
 </table>
 
 <div>
-  <a class='hibar' routerLink='/request-lines/create/{{request.id}}'> </a>
+  <a class='hibar' routerLink='/requestlines/create/{{request.id}}'> </a>
 </div>
 
 <a style="float:right" *ngIf='request.status!="Review"' (click)="Review()" class='btn btn-primary' title='Submit'

@@ -21,6 +21,8 @@ namespace PRS.Controllers
 
         #region Public Constructors
 
+        #region Public Constructors
+
         public RequestControllerAPI(MyDb context)
         {
             _context = context;
@@ -33,6 +35,10 @@ namespace PRS.Controllers
         #endregion Public Constructors
 
         #endregion Public Constructors
+
+        #endregion Public Constructors
+
+        #region Public Methods
 
         #region Public Methods
 
@@ -132,7 +138,7 @@ namespace PRS.Controllers
             return NoContent();
         }
 
-        [Route("/api/SetStatusApproved/{id}")]          // Status-Approved
+        [Route("/api/request/SetStatusApproved/{id}")]          // Status-Approved
         [HttpGet]
         public async Task<ActionResult<Requests>> SetStatusApproved(int id)
         {
@@ -191,6 +197,10 @@ namespace PRS.Controllers
 
         #endregion Public Methods
 
+        #endregion Public Methods
+
+        #region Private Fields
+
         #region Private Fields
 
         #region Private Fields
@@ -208,6 +218,10 @@ namespace PRS.Controllers
         #endregion Private Fields
 
         #endregion Private Fields
+
+        #endregion Private Fields
+
+        #region Private Methods
 
         #region Private Methods
 
@@ -230,6 +244,8 @@ namespace PRS.Controllers
         {
             return _context.Requests.Any(e => e.Id == id);
         }
+
+        #endregion Private Methods
 
         #endregion Private Methods
 

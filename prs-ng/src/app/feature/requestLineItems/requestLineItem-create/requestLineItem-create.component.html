@@ -3,36 +3,24 @@
     <span><strong>{{title}}&nbsp;&nbsp;&nbsp;</strong></span>
     <span><a routerLink='/request/list'><strong>Back to list</strong></a></span>
   </div>
-  <p *ngIf='!requestLineItem'>Loading...</p>
-  <div *ngIf='requestLineItem'>
 
-    -->
-    <div class="form-group row">
-      <label class='col-form-label col-sm-2' for="requestlineitemproductname">Product Name:</label>
-      <input [(ngModel)]='requestlineItem.product.name' name='RequestLineItemProductName"' type="text"
-        class="form-control col-sm-6" name="requestLineItemProductName""
-        aria-describedby=" prodNameHelp" placeholder="RequestLineItemProductName">
-      <small id="prodNameHelp" class="form-text text-muted col-sm-2">Product's Name</small>
-    </div>
 
-    <div class="form-group row">
-      <label class='col-form-label col-sm-2' for="requestlineitemproductid">Id:</label>
-      <input [(ngModel)]='requestlineItem.product.id' name='RequestLineItemProductId"' type="text"
-        class="form-control col-sm-6" id="requestLineItemProductId""
-        aria-describedby=" prodIdHelp" placeholder="RequestLineItemProductId">
-      <small id="prodIdHelp" class="form-text text-muted col-sm-2">Product's Id</small>
-    </div>
+  <div class="form-group row">
+    <label class='col-form-label col-sm-2' for="requestlineitemproductid">Id:</label>
+    <input [(ngModel)]='pID' name='RequestLineItemProductId"' type="text" class="form-control col-sm-6"
+      id="requestLineItemProductId" aria-describedby=" prodIdHelp" placeholder="RequestLineItemProductId">
+    <small id="prodIdHelp" class="form-text text-muted col-sm-2">Product's Id</small>
+  </div>
 
-    <div class="form-group row">
-      <label class='col-form-label col-sm-2' for="requestlineItemquantity">Quantity:</label>
-      <input [(ngModel)]='requestlineItem.quantity' name='Quantity' type="text" class="form-control col-sm-6"
-        id="quantity" aria-describedby="QuantityHelp" placeholder="Quantity">
-      <small id="QuantityHelp" class="form-text text-muted col-sm-2">Item's Quantity:</small>
-    </div>
+  <div class="form-group row">
+    <label class='col-form-label col-sm-2' for="requestlineItemquantity">Quantity:</label>
+    <input [(ngModel)]='reqline.quantity' name='Quantity' type="text" class="form-control col-sm-6" id="quantity"
+      aria-describedby="QuantityHelp" placeholder="Quantity">
+    <small id="QuantityHelp" class="form-text text-muted col-sm-2">Item's Quantity:</small>
+  </div>
 
-    <div class='form-group'>
-      <button (click)='create()' class='btn btn-primary'>Create</button>
-    </div>
+  <div class='form-group'>
+    <button (click)='create()' class='btn btn-primary'>Create</button>
   </div>
 </div>
 
@@ -66,7 +54,7 @@
 
 
 
-<!-- <div>
+<div>
     <div>
     <span>{{title}}</span>
     </div>

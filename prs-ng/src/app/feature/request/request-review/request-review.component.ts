@@ -22,7 +22,7 @@ export class RequestReviewComponent implements OnInit
   user: Users;
   request: Requests;
   resp: Response;
-  requestlines: RequestLinesComponent;
+  // requestlines: RequestLinesComponent;
 
 
   constructor ( private requestSvc: RequestService,

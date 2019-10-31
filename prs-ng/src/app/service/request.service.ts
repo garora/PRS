@@ -51,9 +51,9 @@ export class RequestService
   }
 
 
-  approve ( request: Requests ): Observable<Requests>
+  approve ( request: number ): Observable<Requests>
   {
-    return this.http.post( this.url + '/Approved/' + request.id, request ) as Observable<any>;
+    return this.http.get( this.url + '/SetStatusApproved/' + request ) as Observable<any>;
   }
 
   reject ( id: number ): Observable<any>

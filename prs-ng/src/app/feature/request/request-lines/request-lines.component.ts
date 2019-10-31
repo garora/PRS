@@ -25,7 +25,7 @@ export class RequestLinesComponent implements OnInit
   resp: any;
   request: Requests;
   requestLineItems: RequestLineItems[];
-  //requestLineItem: RequestLineItems;
+  requestLineItem: RequestLineItems;
 
   constructor ( private requestSvc: RequestService,
     private requestLineItemService: RequestLineItemService,
@@ -49,7 +49,7 @@ export class RequestLinesComponent implements OnInit
       this.delete();
     }
     this.request;
-    this.requestLineItemService.listById( this.id ).subscribe( prlis =>
+    this.requestLineItemService.RlbyRiD( this.id ).subscribe( prlis =>
     {
       this.requestLineItems = prlis;
     }
