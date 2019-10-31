@@ -1,37 +1,32 @@
 <div id='component'>
   <div id='pagetitle'>
-    <span><strong>{{title}}&nbsp;</strong></span>
-    <span><a routerLink='/request/list'>Back to list</a></span>
+    <span><strong>{{title}}&nbsp;&nbsp;&nbsp;</strong></span>
+    <span><a routerLink='/request/list'><strong>Back to list</strong></a></span>
   </div>
   <p *ngIf='!requestLineItem'>Loading...</p>
   <div *ngIf='requestLineItem'>
 
-      <div class="form-group row">
-          <label class='col-form-label col-sm-2' for="requestlineitemprequestid">Request Id:</label>
-          <input [(ngModel)]='requestlineItem.request.id' name='RequestLineItemRequestId' type="text" class="form-control col-sm-6" id="requestLineItemRequestId"
-            aria-describedby="reqIdHelp" placeholder="RequestLineItemRequestId" aria-readonly="true">
-          <small id="reqIdHelp" class="form-text text-muted col-sm-2">Request's Id</small>
-        </div>
-         <div class="form-group row">
-     <label class='col-form-label col-sm-2' for="RequestLineItemId">Line Item Id:</label>
-      <input [(ngModel)]='requestlineItem.id' name='RequestLlineItem' type="text" class="form-control col-sm-6" id="requestLineItemId"
-       aria-describedby="lineIdHelp" placeholder="RequestLlineItemId" aria-readonly="true">
-      <small id="lineIdHelp" class="form-text text-muted col-sm-2">Line Item's Id</small>
+    -->
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="requestlineitemproductname">Product Name:</label>
+      <input [(ngModel)]='requestlineItem.product.name' name='RequestLineItemProductName"' type="text"
+        class="form-control col-sm-6" name="requestLineItemProductName""
+        aria-describedby=" prodNameHelp" placeholder="RequestLineItemProductName">
+      <small id="prodNameHelp" class="form-text text-muted col-sm-2">Product's Name</small>
     </div>
-
-  
 
     <div class="form-group row">
       <label class='col-form-label col-sm-2' for="requestlineitemproductid">Id:</label>
-      <input [(ngModel)]='requestlineItem.product.id' name='RequestLineItemProductId"' type="text" class="form-control col-sm-6" id="requestLineItemProductId""
-        aria-describedby="prodIdHelp" placeholder="RequestLineItemProductId" >
+      <input [(ngModel)]='requestlineItem.product.id' name='RequestLineItemProductId"' type="text"
+        class="form-control col-sm-6" id="requestLineItemProductId""
+        aria-describedby=" prodIdHelp" placeholder="RequestLineItemProductId">
       <small id="prodIdHelp" class="form-text text-muted col-sm-2">Product's Id</small>
     </div>
 
     <div class="form-group row">
       <label class='col-form-label col-sm-2' for="requestlineItemquantity">Quantity:</label>
-      <input [(ngModel)]='requestlineItem.quantity' name='Quantity' type="text" class="form-control col-sm-6" id="quantity"
-        aria-describedby="QuantityHelp" placeholder="Quantity">
+      <input [(ngModel)]='requestlineItem.quantity' name='Quantity' type="text" class="form-control col-sm-6"
+        id="quantity" aria-describedby="QuantityHelp" placeholder="Quantity">
       <small id="QuantityHelp" class="form-text text-muted col-sm-2">Item's Quantity:</small>
     </div>
 
@@ -39,7 +34,36 @@
       <button (click)='create()' class='btn btn-primary'>Create</button>
     </div>
   </div>
-</div>     
+</div>
+
+
+
+
+
+
+
+
+<!-- <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="requestlineitemprequestid">Request Id:</label>
+      <input [(ngModel)]='requestlineItem.request.id' name='RequestLineItemRequestId' type="text"
+        class="form-control col-sm-6" id="requestLineItemRequestId" aria-describedby="reqIdHelp"
+        placeholder="RequestLineItemRequestId" aria-readonly="true">
+      <small id="reqIdHelp" class="form-text text-muted col-sm-2">Request's Id</small>
+    </div>
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="RequestLineItemId">Line Item Id:</label>
+      <input [(ngModel)]='requestlineItem.id' name='RequestLlineItem' type="text" class="form-control col-sm-6"
+        id="requestLineItemId" aria-describedby="lineIdHelp" placeholder="RequestLlineItemId" aria-readonly="true">
+      <small id="lineIdHelp" class="form-text text-muted col-sm-2">Line Item's Id</small>
+    </div>
+
+
+
+
+
+
+
+
 
 
 <!-- <div>

@@ -12,14 +12,15 @@ export class RequestLineItems
     product: Products;
     request: Requests;
 
-    constructor ()
+    constructor ( id: number = 0, rId: number = 0,
+        pId: number = 0, qty: number = 1, product: Products = new Products,
+        req: Requests = new Requests() )
     {
-
-        this.id = 0;
-        this.requestId = 0;
-        this.productId = 0;
-        this.quantity = 1;
-
+        this.id = id;
+        this.requestId = rId;
+        this.productId = pId;
+        this.quantity = qty;
+        this.request = req;
     }
 
     about (): string

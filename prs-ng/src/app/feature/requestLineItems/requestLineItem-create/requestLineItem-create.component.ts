@@ -14,47 +14,94 @@ import { RequestLineItemService } from '@svc/requestLineItem.service';
   templateUrl: './requestLineItem-create.component.html',
   styleUrls: [ './requestLineItem-create.component.css' ]
 } )
-export class RequestLineItemCreateComponent implements OnInit
-{ 
-  title: 'Create Line Item';
-  productId: Products[ "id" ];
-  product: Products;
-  products: Products[];
-  reqId: number;
-  request: Requests;
-  resp: any;
-  reqlineItem: RequestLineItems = new RequestLineItems();
 
-  constructor ( private requestSvc: RequestService,
-    private reqLineItemSvc: RequestLineItemService,
+export class RequestLineItemCreateComponent implements OnInit
+{
+  title: 'Create Line Item';
+  reqId: number;
+  product: Products = new Products( 0, '', 'Loading...', 0, '', '', 0, null );
+  req: Requests = new Requests( 0, '', '', '', '', '', 0, 0, null );
+  products: Products[] = [ this.product ];
+  reqline: RequestLineItems = new RequestLineItems( 0, 0, 0, 1, this.product, null );
+  // productId: Products[ "id" ];
+  // product: Products;
+  // request: Requests;
+  // resp: any;
+
+
+
+
+  constructor ( private reqSvc: RequestService,                             //  injects property into component (then we need to forward it )
+    private reqlineSvc: RequestLineItemService,
     private route: ActivatedRoute,
     private productSvc: ProductService,
     private systemSvc: SystemService,
-    private router: Router )
-  {    //  injects property into component (then we need to forward it )
-  }
+    private router: Router ) { }
 
   ngOnInit ()
   {
-    this.route.params.subscribe( parms =>
+    this.route.params.subscribe( params => this.reqId = params.id );
+    this.reqSvc.get( this.reqId ).subscribe( rresp =>
     {
-      this.reqId = parms[ "Id" ];
-      this.requestSvc.get( this.reqId ).subscribe( requests =>
-      {
-        this.request = Requests.length > 0 ? requests[ 0 ] : null;
-      } );
+      this.req = rresp as Requests;
     } );
-    this.productSvc.list().subscribe( products =>
+    this.productSvc.list().subscribe( presp =>
     {
-      this.products = products;
-    }
-    );
+      this.products = presp as Products[];
+    } );
   }
 
-  compareFn ( { u1, u2 }: { u1: Products; u2: Products; } )
+  create ()
   {
-    return u1 && u2 ? u1.id == u2.id : u1 == u2;
+    console.log( this.req );
+    this.reqline.request = this.req;
+    this.reqline.requestId = this.reqId;
+    this.reqline.productId = this.reqline.product.id;
+    this.reqline.product = null;
+    this.reqline.requestId = this.reqline.request.id;
+    this.reqline.request = null;
+    this.reqlineSvc.create( this.reqline ).subscribe( resp =>
+    {
+      this.reqline = resp as RequestLineItems;
+      this.router.navigate( [ '/requestline/list/' + this.reqId ] );
+    },
+      err =>
+      {
+        console.log( err );
+      } );
   }
+}
+
+
+
+
+
+  // ngOnInit ()
+  // {
+  //   this.route.params.subscribe( parms =>
+  //   {
+  //     this.reqId = parms[ "Id" ];
+  //     this.requestSvc.get( this.reqId ).subscribe( requests =>
+  //     {
+  //       this.request = Requests.length > 0 ? requests[ 0 ] : null;
+  //     } );
+  //   } );
+  //   this.productSvc.list().subscribe( products =>
+  //   {
+  //     this.products = products;
+  //   }
+  //   );
+  // }
+
+  // compareFn ( { u1, u2 }: { u1: Products; u2: Products; } )
+  // {
+  //   return u1 && u2 ? u1.id == u2.id : u1 == u2;
+  // }
+
+
+
+
+
 
   // create ()
   // {
@@ -67,7 +114,7 @@ export class RequestLineItemCreateComponent implements OnInit
   //     this.router.navigateByUrl( '/request/list' );
   //   } );
   // }
-}
+// }
 
 
 
