@@ -1,34 +1,35 @@
 <div class='component-content'>
-    <div class='lefthalf'>
-        <span class='component-title'><strong>{{title}}&nbsp;&nbsp;&nbsp;</strong> </span>
-        <span><a routerLink='/request/list'><strong>Back to list</strong></a></span>
-
-        <p *ngIf='!requests'>Loading ...</p>
-        <table class="table table-sm" *ngIf='requests'>
-            <tr>
-
-
+        <div class='lefthalf'>
+                <span class='component-title'><strong>{{title}}&nbsp;&nbsp;&nbsp;</strong> </span>
+                <span><a routerLink='/request/list'><strong>Back to list</strong></a></span>
+        </div>
+</div>
+<p *ngIf='!requests'>Loading ...</p>
+<p *ngIf='!requests'>All Requests Reviewed</p>
+<table class="table table-sm" *ngIf='requests'>
+        <tr>
+                <th class='table-secondary'></th>
+                <!-- <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
+                                                (click)="sortBy('id')"><u>Id</u></a></th> -->
                 <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
-                        (click)="sortBy('id')"><u>Id</u></a></th>
+                                (click)="sortBy('userName')"><u>Username</u></a></th>
                 <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
-                        (click)="sortBy('userName')"><u>User Name</u></a></th>
+                                (click)="sortBy('description')"><u>Description</u></a></th>
                 <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
-                        (click)="sortBy('description')"><u>Description</u></a></th>
+                                (click)="sortBy('justification')"><u>Justification</u></a></th>
                 <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
-                        (click)="sortBy('justification')"><u>Justification</u></a></th>
+                                (click)="sortBy('deliveryMode')"><u>Delivery Mode</u></a></th>
                 <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
-                        (click)="sortBy('deliveryMode')"><u>Delivery Mode</u></a></th>
+                                (click)="sortBy('status')"><u>Status</u></a></th>
                 <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
-                        (click)="sortBy('status')"><u>Status</u></a></th>
-                <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"
-                        (click)="sortBy('total')"><u>Total</u></a></th>
+                                (click)="sortBy('total')"><u>Total</u></a></th>
                 <!-- <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold" ><u>Rejection Reason</u></a></th> -->
-                <th class="table-secondary btn-link"><a class='btn btn-link font-weight-bold'>Action</a></th>
-            </tr>
+                <th class="table-secondary btn-link"><a class='btn btn-link font-weight-bold'>Action</a> </th>
+        </tr>
 
-            <tr *ngFor='let request of requests | sort:sortCriteria:sortOrder'>
-                <!-- *ngIf='request.userId != this.loggedInUser.id' ARE NOT USED IN REQUEST LIST ONLY REVIEW -->
-                <td>{{request.id}}</td>
+        <tr *ngFor='let request of requests | sort:sortCriteria:sortOrder'>
+                <td></td>
+                <!-- <td>{{request.id}}</td> -->
                 <td>{{request.user.username}}</td>
                 <td>{{request.description}}</td>
                 <td>{{request.justification}}</td>
@@ -36,13 +37,16 @@
                 <td>{{request.status}}</td>
                 <td>{{request.total | currency}}</td>
                 <!-- <td *ngIf='request.userId != this.loggedInUser.id'>{{request.isReviewer?"Reviewer":""}} {{request.admin?"admin":""}}</td> -->
+                <td class='actions'>
+                        <a routerLink='/request/approve/{{request.id}}' class='btn btn-primary'>REVIEW</a>
+                </td>
+        </tr>
+</table>
 
-            </tr>
-
-            <!-- <span><a *ngIf='!loggedInUser.admin' routerLink='/request/list'>  </span>    
+<!-- <span><a *ngIf='!loggedInUser.admin' routerLink='/request/list'>  </span>    
     <span><a *ngIf='loggedInUser.admin == request.userName' routerLink='/request/list'>  </span>   -->
 
-            <!-- Code for action buttons NOT WORKING
+<!-- Code for action buttons NOT WORKING
 
             <div *ngIf='request.userId != this.loggedInUser.id' class='form-group'>
                 <a routerLink='/request/approve/{{requestLineItem.id}}' class='btn btn-primary'>REVIEW</a>
@@ -62,3 +66,5 @@
 
                 </div>
             </div> -->
+
+<!-- *ngIf='request.userId != this.loggedInUser.id' ARE NOT USED IN REQUEST LIST ONLY REVIEW -->

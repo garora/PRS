@@ -1,3 +1,4 @@
+import { Vendors } from './../../../model/vendors.class';
 import { Requests } from './../../../model/requests.class';
 import { RequestLineItems } from '@model/requestLineItems.class';
 import { Products } from '@model/products.class';
@@ -19,10 +20,14 @@ export class RequestLineItemCreateComponent implements OnInit
 {
   title: 'Create Line Item';
   reqId: number;
-  product: Products = new Products( 0, '', 'Loading...', 0, '', '', 0, null );
-  req: Requests = new Requests( 0, '', '', '', '', '', 0, 0, null );
+  vendor: Vendors = new Vendors();
+
+  product: Products = new Products();
+  // product: Products = new Products( 0, '', 'Loading...', 0, '', '', 0, null );
+  req: Requests;
   products: Products[] = [ this.product ];
-  reqline: RequestLineItems = new RequestLineItems( 0, 0, 0, 1, this.product, null );
+  reqline: RequestLineItems = new RequestLineItems();
+  // reqline: RequestLineItems = new RequestLineItems( 0, 0, 0, 1, this.product, null );
   pID: number = 0;
   // productId: Products[ "id" ];
   // product: Products;
@@ -56,17 +61,17 @@ export class RequestLineItemCreateComponent implements OnInit
   {
     console.log( this.products )
     console.log( this.req );
-    for ( let i: number = 0; i < this.products.length; i++ )
-    {
-      if ( this.products[ i ].id == this.pID )
-      {
-        this.product = this.products[ i ];
-      }
-    }
-    this.reqline.request = this.req;
-    this.reqline.product = this.product;
-    this.reqline.requestId = this.reqId;
-    this.reqline.productId = this.pID;
+    console.log( this.reqline );
+    // for ( let i: number = 0; i < this.products.length; i++ )
+    // {
+    //   if ( this.products[ i ].id == this.pID )
+    //   {
+    //     this.product = this.products[ i ];
+    //   }
+    // }
+    this.reqline.requestId = this.req.id;
+    this.reqline.productId = this.reqline.product.id;
+
     this.reqline.product = null;
     // this.reqline.requestId = this.reqline.request.id;
     this.reqline.request = null;

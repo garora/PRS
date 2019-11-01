@@ -1,44 +1,52 @@
 <div class='component-content'>
-  <div>
-    <span class='component-title'><strong>{{title}}&nbsp;&nbsp;&nbsp;</strong></span>
-    <span><a routerLink='/request/list'><strong>Back to list</strong></a></span>
+  <div class=''>
+    <div class='lefthalf'>
+      <span class='component-title'><strong>{{title}}&nbsp;&nbsp;&nbsp;</strong></span>
+      <span><a routerLink='/request/list'><strong>Back to list</strong></a></span>
+    </div>
   </div>
-  <p *ngIf='!request'>Loading...</p>
-</div>
-<!-- <p *ngIf='loggedInUser.isAdmin !== true'>You must be an admin.</p>
+  <!-- <p *ngIf='loggedInUser.isAdmin !== true'>You must be an admin.</p>
                                                   <div *ngIf='loggedInUser.isAdmin == true'>
                                               </div> -->
-<div *ngIf='request'> ​
+  <table class="table table-sm" *ngIf='request'>
+    <tr>
+      <td>User: </td>
+      <td>{{ request.user.firstname }} {{request.user.lastname}}</td>
+    </tr>
+    <tr>
+      <td>Total: </td>
+      <td>{{ request.total | currency }}</td>
+    </tr> ​
 
-  <div class="form-group row">
-    <label class='col-form-label col-sm-2' for="requestdescription">Description:</label>
-    <input [(ngModel)]='request.description' name='Description' type="text" class="form-control col-sm-6"
-      id="requestdescription" aria-describedby="descriptionHelp" placeholder="Description">
-    <small id="descriptionHelp" class="form-text text-muted col-sm-2">Request's description</small>
-  </div>
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="requestdescription">Description:</label>
+      <input [(ngModel)]='request.description' name='Description' type="text" class="form-control col-sm-6"
+        id="requestdescription" aria-describedby="descriptionHelp" placeholder="Description">
+      <small id="descriptionHelp" class="form-text text-muted col-sm-2">Request's description</small>
+    </div>
 
-  <div class="form-group row">
-    <label class='col-form-label col-sm-2' for="requestjustification">Justification:</label>
-    <input [(ngModel)]='request.justification' name='Justification' type="text" class="form-control col-sm-6"
-      id="requestjustification" aria-describedby="justificationHelp" placeholder="Justification">
-    <small id="justificationHelp" class="form-text text-muted col-sm-2">Request's Justification</small>
-  </div>
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="requestjustification">Justification:</label>
+      <input [(ngModel)]='request.justification' name='Justification' type="text" class="form-control col-sm-6"
+        id="requestjustification" aria-describedby="justificationHelp" placeholder="Justification">
+      <small id="justificationHelp" class="form-text text-muted col-sm-2">Request's Justification</small>
+    </div>
 
-  <div class="form-group row">
+    <!-- <div class="form-group row">
     <label class='col-form-label col-sm-2' for="rejectionreason">RejectionReason:</label>
     <input [(ngModel)]='request.rejectionreason' name='RejectionReason' type="text" class="form-control col-sm-6"
       id="rejectionReasonHelp" aria-describedby="rejectionReasonHelp" placeholder="RejectionReason">
     <small id="rejectionReasonHelp" class="form-text text-muted col-sm-2">Request's RejectionReason</small>
-  </div>
+  </div> -->
 
-  <div class="form-group row">
-    <label class='col-form-label col-sm-2' for="deliveryMode ">Delivery Mode :</label>
-    <input [(ngModel)]='request.deliveryMode ' name='DeliveryMode ' type="text" class="form-control col-sm-6"
-      id="deliveryMode " aria-describedby="deliveryMode " placeholder="DeliveryMode ">
-    <small id="deliveryMode " class="form-text text-muted col-sm-2">Request's Delivery Mode </small>
-  </div>
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="deliveryMode ">Delivery Mode :</label>
+      <input [(ngModel)]='request.deliveryMode ' name='DeliveryMode ' type="text" class="form-control col-sm-6"
+        id="deliveryMode " aria-describedby="deliveryMode " placeholder="DeliveryMode ">
+      <small id="deliveryMode " class="form-text text-muted col-sm-2">Request's Delivery Mode </small>
+    </div>
 
-  <div class="form-group row">
+    <!-- <div class="form-group row">
     <label class='col-form-label col-sm-2' for="status">Status:</label>
     <input [(ngModel)]='request.status' name='status' type="text" class="form-control col-sm-6" id="status"
       aria-describedby="statusHelp" placeholder="status">
@@ -57,16 +65,10 @@
     <input [(ngModel)]='request.userId' name='userId' type="text" class="form-control col-sm-6" id="userId"
       aria-describedby="userIdHelp" placeholder="userId" aria-readonly="">
     <small id="userIdHelp" class="form-text text-muted col-sm-2">User Id</small>
-  </div>
+  </div> -->
 
-  <div class='form-group'>
-    <button (click)='edit();' class='btn btn-primary'>Save Changes</button>
-  </div>
+    <div class='form-group'>
+      <button (click)='edit();' class='btn btn-primary'>Save Changes</button>
+    </div>
+  </table>
 </div>
-
-
-<!-- <div id='component'>
-      <div id='pagetitle'>
-          <!-- add styling -->
-<!-- <span>[{{title}}]</span>
-      </div> -->

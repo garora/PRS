@@ -1,9 +1,14 @@
+import { ProductService } from './../../../service/product.service';
 import { RequestLineItems } from './../../../model/requestLineItems.class';
 import { Component, OnInit } from '@angular/core';
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { Requests } from '../../../model/requests.class';
 import { RequestLineItemService } from '../../../service/requestLineItem.service';
+import { Vendors } from '@model/vendors.class';
+import { Products } from '@model/products.class';
+import { RequestService } from '@svc/request.service';
+import { SystemService } from '@svc/system.service';
 
 
 @Component( {
@@ -18,10 +23,19 @@ export class RequestLineItemEditComponent implements OnInit
   id: number;
   resp: any;
   request: RequestLineItems;
+  vendor: Vendors = new Vendors();
+  product: Products = new Products();
+  req: Requests;
+  reqline: RequestLineItems = new RequestLineItems();
+  products: Products[] = [ this.product ]
 
-  constructor ( private requestLineItemEditSvc: RequestLineItemService,
-    private router: Router,
-    private route: ActivatedRoute ) { }
+
+  constructor ( private reqSvc: RequestService,                             //  injects property into component (then we need to forward it )
+    private reqlineSvc: RequestLineItemService,
+    private route: ActivatedRoute,
+    private productSvc: ProductService,
+    private systemSvc: SystemService,
+    private router: Router ) { }
 
   // need to get id request from request, get the associated request record
   // ngOnInit is the first thing on page called
@@ -32,18 +46,26 @@ export class RequestLineItemEditComponent implements OnInit
   {
     this.route.params.subscribe( parms =>
     {
-      this.requestLineItemEditSvc.get( parms.id ).subscribe( resp =>
+      this.reqlineSvc.get( parms.id ).subscribe( resp =>
       {
-        this.request = resp as RequestLineItems;
+        this.reqline = resp as RequestLineItems;
         console.log( 'request edit' + this.request.id );
       } )
+    } );
+    this.productSvc.list().subscribe( presp =>
+    {
+      this.products = presp as Products[];
     } );
   }
 
   //   this is all we need to save request
   edit ()
   {
-    this.requestLineItemEditSvc.edit( this.request ).subscribe( resp =>
+    this.reqline.product = null;
+    // this.reqline.requestId = this.reqline.request.id;
+    this.reqline.request = null;
+    console.log( this.reqline );
+    this.reqlineSvc.edit( this.reqline.id, this.reqline ).subscribe( resp =>
     {
       //  success
       console.log( resp );

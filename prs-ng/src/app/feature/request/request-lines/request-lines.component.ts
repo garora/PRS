@@ -21,7 +21,7 @@ export class RequestLinesComponent implements OnInit
   title: string = 'Request Line';
   id: number;
   loggedInUserId: Users[ "id" ];
-  lineId: string = '0';
+
   resp: any;
   request: Requests;
   requestLineItems: RequestLineItems[];
@@ -44,10 +44,7 @@ export class RequestLinesComponent implements OnInit
       this.request = requests;
     }
     );
-    if ( this.lineId != '0' && this.lineId != null )
-    {
-      this.delete();
-    }
+
     this.request;
     this.requestLineItemService.RlbyRiD( this.id ).subscribe( prlis =>
     {
@@ -74,11 +71,12 @@ export class RequestLinesComponent implements OnInit
 
 
 
-  delete (): void
+  delete ( id: number ): void
   {
-    this.requestLineItemService.delete( this.requestLineItem.id ).subscribe( res =>
+    this.requestLineItemService.delete( id ).subscribe( res =>
     {
-      this.router.navigateByUrl( "/request" );
+      // this.router.navigateByUrl( "/request" );
+      this.ngOnInit();
     } );
   }
 

@@ -47,23 +47,22 @@
 
                                         <tr *ngFor='let request of requests | sort:sortCriteria:sortOrder'>
 
-                                                <td *ngIf='request.status != "REVIEW"'>&nbsp;&nbsp;&nbsp;{{request.id}}
-                                                </td>
-                                                <td *ngIf='request.status != "REVIEW"'>
+                                                <td>&nbsp;&nbsp;&nbsp;{{request.id}} </td>
+                                                <td>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{request.user.username}}
                                                 </td>
-                                                <td *ngIf='request.status != "REVIEW"'>
+                                                <td>
                                                         &nbsp;&nbsp;&nbsp;{{request.description}}</td>
-                                                <td *ngIf='request.status != "REVIEW"'>
+                                                <td>
                                                         &nbsp;&nbsp;&nbsp;{{request.justification}}</td>
-                                                <td *ngIf='request.status != "REVIEW"'>
+                                                <td>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{request.deliveryMode}}
                                                 </td>
-                                                <td *ngIf='request.status != "REVIEW"'>
+                                                <td>
                                                         &nbsp;&nbsp;&nbsp;{{request.status}}</td>
-                                                <td *ngIf='request.status != "REVIEW"'>
+                                                <td>
                                                         &nbsp;&nbsp;&nbsp;{{request.total | currency}} </td>
-                                                <td *ngIf='request.status != "REVIEW"'>
+                                                <td>
                                                         &nbsp;&nbsp;{{request.rejectionReason}}
                                                 </td>
                                                 <!-- <td *ngIf='request.status != "REVIEW"'> -->
@@ -72,7 +71,7 @@
                                                         {{request.admin?"Admin":""}}
                                                 </td>
 
-                                                <td *ngIf='request.status != "REVIEW"' class='actions'>
+                                                <td class='actions'>
                                                         <div>
                                                                 <a routerLink='/request/detail/{{request.id}}'
                                                                         style='padding-left: 16px'

@@ -15,12 +15,24 @@ namespace PRS.Controllers
     {
         #region Public Constructors
 
+        #region Public Constructors
+
+        #region Public Constructors
+
         public RequestLineControllerAPI(MyDb context)
         {
             _context = context;
         }
 
         #endregion Public Constructors
+
+        #endregion Public Constructors
+
+        #endregion Public Constructors
+
+        #region Public Methods
+
+        #region Public Methods
 
         #region Public Methods
 
@@ -36,7 +48,7 @@ namespace PRS.Controllers
             _context.RequestLines.Remove(requestLines);
             await _context.SaveChangesAsync();
             /* CALL RECALC */
-            var success = RecalculateRequestTotal(id);
+            var success = RecalculateRequestTotal(requestLines.RequestId);
             if (!success) { return this.StatusCode(500); }
             return requestLines;
         }
@@ -60,7 +72,7 @@ namespace PRS.Controllers
             }
 
             /* CALL RECALC */
-            var success = RecalculateRequestTotal(id);
+            var success = RecalculateRequestTotal(requestLines.RequestId);
             if (!success) { return this.StatusCode(500); }
 
             return requestLines;
@@ -100,7 +112,7 @@ namespace PRS.Controllers
                 await _context.SaveChangesAsync();
 
                 /* CALL RECALC */
-                var success = RecalculateRequestTotal(id);
+                var success = RecalculateRequestTotal(requestLines.RequestId);
                 if (!success) { return this.StatusCode(500); }
 
             }
@@ -121,17 +133,33 @@ namespace PRS.Controllers
 
         #endregion Public Methods
 
+        #endregion Public Methods
+
+        #endregion Public Methods
+
+        #region Private Fields
+
+        #region Private Fields
+
         #region Private Fields
 
         private readonly MyDb _context;
 
         #endregion Private Fields
 
+        #endregion Private Fields
+
+        #endregion Private Fields
+
+        #region Private Methods
+
         #region Private Methods
 
         // Recalculate Total:
         // PUT: api/RequestLineControllerAPI/5(reqId)
-        [HttpDelete("{id}")]// C#Include  SqlServer Join
+
+        #region Private Methods
+
         private bool RecalculateRequestTotal(int requestId)
         {
             var request = _context.Requests
@@ -158,6 +186,10 @@ namespace PRS.Controllers
         {
             return _context.RequestLines.Any(e => e.Id == id);
         }
+
+        #endregion Private Methods
+
+        #endregion Private Methods
 
         #endregion Private Methods
     }

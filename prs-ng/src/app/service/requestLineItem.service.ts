@@ -36,14 +36,14 @@ export class RequestLineItemService
     return this.http.post( this.url, request ) as Observable<any>;
   }
 
-  edit ( request: RequestLineItems ): Observable<any>
+  edit ( id: number, request: RequestLineItems ): Observable<any>
   {
-    return this.http.put( this.url + '/' + request.id, request ) as Observable<any>;
+    return this.http.put( this.url + '/' + id, request ) as Observable<any>;
   }
 
   delete ( id: number ): Observable<any>
   {
-    return this.http.delete( this.url + '/' + id );
+    return this.http.delete( this.url + '/' + id ) as Observable<any>;
   }
   RlbyRiD ( id: number ): Observable<any>
   {

@@ -6,9 +6,11 @@
 
 
   <div class="form-group row">
-    <label class='col-form-label col-sm-2' for="requestlineitemproductid">Id:</label>
-    <input [(ngModel)]='pID' name='RequestLineItemProductId"' type="text" class="form-control col-sm-6"
-      id="requestLineItemProductId" aria-describedby=" prodIdHelp" placeholder="RequestLineItemProductId">
+    <label class='col-form-label col-sm-2' for="requestlineitemproductid">Product:</label>
+    <select [(ngModel)]='reqline.product' class="form-control">
+      <option *ngFor="let product of products" [ngValue]="product">{{product.name}}</option>
+    </select>
+
     <small id="prodIdHelp" class="form-text text-muted col-sm-2">Product's Id</small>
   </div>
 
