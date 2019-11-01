@@ -73,7 +73,8 @@ export class RequestLineItemCreateComponent implements OnInit
     this.reqlineSvc.create( this.reqline ).subscribe( resp =>
     {
       this.reqline = resp as RequestLineItems;
-      this.router.navigate( [ '/requestline/list/' + this.reqId ] );
+      this.router.navigate( [ '/request/list/' + this.reqId ] );
+      // this.router.navigate( [ '/requestline/list/' + this.reqId ] );
     },
       err =>
       {
